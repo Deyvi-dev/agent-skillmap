@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/Deyvi-dev/agent-skillmap.git"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Deyvi (https://github.com/Deyvi-dev)",
   "type": "module",
   "bin": {
@@ -29,7 +29,8 @@
   "files": [
     "bin/",
     "skills/",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "validate": "node scripts/validate.mjs",

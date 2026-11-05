@@ -375,6 +375,12 @@ HTML manuals) and runs automatically before any publish.
 
 ---
 
+## License
+
+[MIT](LICENSE)
+
+---
+
 ## Credits
 
 agent-skillmap is maintained by [Deyvi](https://github.com/Deyvi-dev) and is based on
