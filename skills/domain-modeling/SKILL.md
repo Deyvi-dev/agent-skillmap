@@ -39,7 +39,7 @@ Formulate precise domain models, entity schemas, aggregate boundaries, state tra
 
 ### Invariants (Guardrails)
 
-1. **UUIDv7 Primary Key Mandatory Rule**: Every entity primary key or unique resource identifier MUST use UUIDv7 for time-ordered sorting and distributed uniqueness.
+1. **Follow the project's ID convention**: New entities use the primary-key format the project already uses; propose UUIDv7 only when there is no convention, and never migrate existing tables without an explicit decision.
 2. **Bounded Context & Aggregate Boundaries**: Explicitly define root aggregates and isolate domain responsibilities.
 3. **Deterministic State Transitions**: State machines must define explicit allowed transitions, prohibited transitions, and transition triggers.
 4. **Schema & Invariant Specifications**: Business rules, validation constraints, and database indexes must be fully specified.
@@ -57,7 +57,7 @@ Formulate precise domain models, entity schemas, aggregate boundaries, state tra
 
 1. Identify Aggregate Roots, Entities, and Value Objects.
 2. Specify entity attributes: field names, data types, nullability, default values, and foreign keys.
-3. Enforce **UUIDv7** primary keys (`id: uuidv7`) for all new tables/entities.
+3. Use the project's primary-key convention for all new tables/entities (UUIDv7 if none exists).
 
 #### 3) Model State Machines & Transitions
 
@@ -77,13 +77,13 @@ Formulate precise domain models, entity schemas, aggregate boundaries, state tra
 
 ### Outputs
 
-- `domain-model.md`: Domain model specification containing Mermaid ER & state diagrams, entity schemas, UUIDv7 primary key definitions, and business invariant contracts.
+- `domain-model.md`: Domain model specification containing Mermaid ER & state diagrams, entity schemas, primary key definitions, and business invariant contracts.
 
 ---
 
 ### Review gate
 
-- [ ] UUIDv7 primary key standard enforced for all entities.
+- [ ] Primary keys follow the project's convention.
 - [ ] Aggregate boundaries and entities clearly specified.
 - [ ] State machine transitions documented with guards and side effects.
 - [ ] Mermaid ER (`erDiagram`) and State (`stateDiagram-v2`) diagrams generated and syntactically valid.

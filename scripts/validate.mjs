@@ -27,6 +27,7 @@ for (const name of skills) {
   const field = (k) => fm[1].match(new RegExp(`^${k}:\\s*(.*)$`, "m"))?.[1]?.trim();
   if (field("name") !== name) fail(`skills/${name}: frontmatter name "${field("name")}" must equal folder name`);
   if (!field("description")) fail(`skills/${name}: missing description`);
+  else if (/^[|>]/.test(field("description"))) fail(`skills/${name}: description must be a single line (no YAML block scalar)`);
   if (!field("argument-hint")) fail(`skills/${name}: missing argument-hint`);
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(name)) fail(`skills/${name}: name must be lowercase-hyphenated`);
   if (RESERVED.has(name)) fail(`skills/${name}: clashes with a built-in agent command`);
@@ -40,7 +41,14 @@ for (const file of walk(skillsDir).filter((f) => f.endsWith(".md"))) {
   }
 }
 
-// 4. html-manual is permanently removed: no workflow, no references, no .html files shipped.
+// 4. Lifecycle commands must stay zero-setup: no "scaffold a project skill first" step.
+for (const name of ["radioactive", "embed-aihero-radioactive"]) {
+  const text = readFileSync(join(skillsDir, name, "SKILL.md"), "utf8");
+  if (/agent-skillmap`? init|If NO primary project skill exists/i.test(text))
+    fail(`skills/${name}: must run standalone, never require /agent-skillmap init first`);
+}
+
+// 5. html-manual is permanently removed: no workflow, no references, no .html files shipped.
 for (const file of walk(root)) {
   const rel = relative(root, file);
   if (rel === "scripts/validate.mjs") continue;

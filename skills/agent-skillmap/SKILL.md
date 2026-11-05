@@ -142,7 +142,7 @@ For each workflow in `workflowsWanted`, create:
 - `Review gate`: checklist with pass/fail criteria
 - `References`: links back to `skills/<projectSlug>/SKILL.md` and any deep dives
 
-- **Special Scaffold Case — `embed-aihero-radioactive`**: When requested, adapt `skills/<projectSlug>/workflows/radioactive/SKILL.md` to run the 14-phase lifecycle embedding Matt Pocock's skills, and scaffold `skills/<projectSlug>/workflows/mattpocock/` containing `wayfinder`, `grilling`, `domain-modeling`, `research`, `prototype`, and `to-spec`. Ensure Phase 1 ALWAYS executes the primary project skill (`skills/<projectSlug>/SKILL.md`) FIRST for request classification and constraint extraction before executing `/wayfinder`.
+- **`radioactive` / `embed-aihero-radioactive` are installed commands, not scaffold targets**: never copy them (or `wayfinder`, `grilling`, `domain-modeling`, `research`, `prototype`, `to-spec`) into `skills/<projectSlug>/workflows/`, and never route them as `/<projectSlug> radioactive`. The user runs `/radioactive <task>` or `/embed-aihero-radioactive <task>` directly; both read `AGENTS.md` and this project skill on their own. Put project rules in the project skill (or `AGENTS.md`), where they pick them up.
 
 Optionally, for each workflow, add `workflows/<workflowName>/template.json` when an external tool needs a standalone command descriptor; keep it minimal (`name`, `entry`, `parent`).
 

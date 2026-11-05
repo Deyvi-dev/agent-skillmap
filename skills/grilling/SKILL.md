@@ -39,7 +39,7 @@ Systematically interrogate assumptions, edge cases, trade-offs, and operational 
 
 1. **Mandatory Socratic Interrogation Gate**: Present 3–7 strategic questions covering Scope, Edge Cases, Data Integrity, Security, and Operational Constraints. Do NOT proceed without explicit user responses.
 2. **Option-Driven Questioning**: Present questions with clear trade-offs (Pros, Cons, Default Option) so choices are actionable.
-3. **Strict UUIDv7 Ordering Invariant**: Enforce time-sortable UUIDv7 for resource identifiers in data model decisions.
+3. **Identifier Convention**: Confirm the project's existing identifier format for new resources; propose UUIDv7 only when there is no convention.
 4. **Binding Decision Log**: Record all user answers and trade-off resolutions into a binding decision log to govern domain modeling and spec creation.
 
 ---
@@ -56,7 +56,7 @@ Systematically interrogate assumptions, edge cases, trade-offs, and operational 
 Formulate **3 to 7 targeted questions** across key dimensions:
 - **Category A: Scope & Boundary Limits** — What is strictly in vs. out of scope for this iteration?
 - **Category B: Edge Cases & Failure Modes** — How to handle network timeouts, concurrency conflicts, invalid payloads, or missing data?
-- **Category C: Data Contracts & Invariants** — Permitted mutations, state transition guards, UUIDv7 identity rules, and audit logging.
+- **Category C: Data Contracts & Invariants** — Permitted mutations, state transition guards, identifier format, and audit logging.
 - **Category D: Performance & Security Constraints** — Rate limiting, RBAC permissions, zero-downtime deployment requirements, and migration strategy.
 
 Format each question with:
@@ -87,7 +87,7 @@ Format each question with:
 
 - [ ] At least 3 to 7 targeted grilling questions presented with trade-offs.
 - [ ] Explicit user responses received and recorded.
-- [ ] UUIDv7 identity standard confirmed for resource data models.
+- [ ] Identifier format for new data models confirmed (project convention, or UUIDv7 if none).
 - [ ] Binding decision log generated to govern domain modeling and specification.
 
 ---

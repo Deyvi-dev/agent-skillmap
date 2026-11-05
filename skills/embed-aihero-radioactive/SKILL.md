@@ -1,7 +1,6 @@
 ---
 name: embed-aihero-radioactive
-description: |
-  Scaffold option & workflow that adapts a project's /radioactive development lifecycle by embedding Matt Pocock / AI Hero skills (wayfinder, grilling, domain-modeling, research, prototype, to-spec), starting with project skill classification followed by wayfinder orientation.
+description: 14-phase radioactive variant with the AI Hero skills (wayfinder, grilling, domain-modeling, research, prototype, to-spec) that runs directly in any project with no setup.
 argument-hint: "<feature or task description>"
 ---
 
@@ -9,13 +8,13 @@ argument-hint: "<feature or task description>"
 
 ### Goal
 
-Adapt and scaffold a project's `radioactive` workflow (`skills/<projectSlug>/workflows/radioactive/SKILL.md`) into a 14-phase development lifecycle that embeds Matt Pocock's skills (`wayfinder`, `grilling`, `domain-modeling`, `research`, `prototype`, `to-spec`), ensuring Phase 1 ALWAYS executes the primary project skill first before running `/wayfinder`.
+Run a 14-phase development lifecycle that embeds Matt Pocock's skills (`wayfinder`, `grilling`, `domain-modeling`, `research`, `prototype`, `to-spec`) directly from `/embed-aihero-radioactive <task>`, reading the project's existing rules first. It uses the installed sibling skills; nothing is copied into the project.
 
 ---
 
 ### Scope
 
-- **Applies to**: Scaffolding or executing a project's `radioactive` workflow for complex features, domain-driven refactors, or cross-stack implementations requiring deep discovery, domain modeling, and quality-gated delivery.
+- **Applies to**: Executing complex features, domain-driven refactors, or cross-stack implementations requiring deep discovery, domain modeling, and quality-gated delivery.
 - **Does not cover**: Single-file trivial bug fixes, pure documentation edits (use `document`), or isolated test additions.
 
 ---
@@ -23,7 +22,6 @@ Adapt and scaffold a project's `radioactive` workflow (`skills/<projectSlug>/wor
 ### Triggers
 
 - "Run embed-aihero-radioactive lifecycle"
-- "/radioactive [feature description]" (when scaffolded with AI Hero embedding)
 - "/embed-aihero-radioactive [feature description]"
 - "Adapt radioactive workflow with Matt Pocock skills"
 
@@ -44,9 +42,9 @@ Adapt and scaffold a project's `radioactive` workflow (`skills/<projectSlug>/wor
 
 ### Invariants (Guardrails)
 
-1. **Phase 1 Execution Order**: Phase 1 MUST ALWAYS execute the primary project entry skill (`skills/<projectSlug>/SKILL.md` or `AGENTS.md`) FIRST to classify the request and extract hard rules, and THEN execute `/wayfinder` for codebase mapping and intent framing.
+1. **Zero setup, standalone command**: Phase 1 reads the project's existing rules (`AGENTS.md`, `CLAUDE.md`, `README.md`, `skills/<projectSlug>/SKILL.md` if present) FIRST, then runs `/wayfinder`. **Never** scaffold a project skill, router, `template.json`, `.claude/skills/<project>` shim or copies of the AI Hero skills as a prerequisite, and never redirect the user to `/<project> radioactive`.
 2. **Sequential Phase Pipeline**: All 14 phases must execute in exact numerical order. No phase skipping.
-3. **UUIDv7 Primary Key Mandatory Rule**: Every entity primary key or unique resource identifier MUST use UUIDv7 for time-ordered sorting and distributed uniqueness.
+3. **Follow the project's ID convention**: New entities use the identifier format the project already uses (e.g. UUIDv4, serial). Propose UUIDv7 only when there is no convention yet, and record the choice in the decision log.
 4. **Socratic Grilling Gate**: Phase 2 must present grilling questions and wait for explicit user response/confirmation before Phase 3 domain modeling.
 5. **Spec Approval Gate**: Phase 7 must generate a structured task specification at `docs/tasks/task.<reference>.md` and obtain explicit user approval before Phase 8/9 execution.
 6. **Executable Workflow Contract**: Phase 8 must scaffold a reusable workflow contract at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
@@ -59,30 +57,29 @@ Adapt and scaffold a project's `radioactive` workflow (`skills/<projectSlug>/wor
 ### Procedure
 
 ```
-Phase 1  — CLASSIFY & WAYFIND  → Project Skill FIRST ➔ /wayfinder
+Phase 1  — CLASSIFY & WAYFIND  → Existing project rules FIRST ➔ /wayfinder
 Phase 2  — GRILLING            → /grilling (Deep Socratic interrogation & decision log)
-Phase 3  — DOMAIN MODELING     → /domain-modeling (Entities, UUIDv7 keys, state machines)
+Phase 3  — DOMAIN MODELING     → /domain-modeling (Entities, keys, state machines)
 Phase 4  — TECHNICAL RESEARCH  → /research (Technical spikes, dependency & API investigation)
 Phase 5  — PROTOTYPE / SPIKE   → /prototype (Conditional: POC validation for high-risk logic)
 Phase 6  — UX DESIGN           → /ui-ux-pro-max (Conditional: if UI involved)
 Phase 7  — TO-SPEC             → /to-spec (Synthesize findings into docs/tasks/task.<reference>.md)
-Phase 8  — WORKFLOW CONTRACT  → /agent-skillmap (Scaffold reusable feature contract)
+Phase 8  — WORKFLOW CONTRACT  → Optional: only if the project already uses skills/<projectSlug>/
 Phase 9  — EXECUTE             → Implement tasks sequentially with evidence-based edits
 Phase 10 — TESTS               → Run project specs/tests (100% pass required)
 Phase 11 — REVIEW              → /thermo-nuclear-code-quality-review or /doc-review
 Phase 12 — FIX LOOP            → /thermo-fix × up to 3 (resolve 🔴→🟠, re-verify build)
-Phase 13 — SKILLS UPDATE       → /agent-skillmap (Update skills & institutional memory)
+Phase 13 — LEARNINGS           → Record new rules in AGENTS.md / existing project skill
 Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release notes)
 ```
 
-#### Phase 1 — CLASSIFY & WAYFIND (Primary Project Skill ➔ /wayfinder)
+#### Phase 1 — CLASSIFY & WAYFIND (Project rules ➔ /wayfinder)
 
-1. **Step 1: Primary Project Skill Classification**:
-   - Load the primary project entry skill (`skills/<projectSlug>/SKILL.md`, `.agents/skills/<projectSlug>/SKILL.md`, or `AGENTS.md`) **FIRST**.
-   - Classify the user request against the project's routing matrix and extract project-wide hard constraints, tech stack details, and domain boundaries.
-   - If NO primary project skill exists, trigger `/agent-skillmap` init (or `plan-to-skillmap`) to scaffold baseline project context before proceeding.
+1. **Step 1: Read existing project rules**:
+   - Read `AGENTS.md` / `CLAUDE.md`, `README.md`, and `skills/<projectSlug>/SKILL.md` (with its routing matrix) only if present.
+   - Extract hard constraints, tech stack and conventions (ID format, ORM, test runner). If nothing is written down, infer them from the code. Do not create files for this.
 2. **Step 2: Codebase Orientation with `/wayfinder`**:
-   - Load the `wayfinder` skill (`skills/<projectSlug>/workflows/mattpocock/wayfinder/SKILL.md` or the installed `wayfinder` skill (`../wayfinder/SKILL.md`)).
+   - Load the installed `wayfinder` skill (`../wayfinder/SKILL.md`).
    - Map codebase entry points, data flows, route handlers, models, and subsystem boundaries relevant to the classified request.
    - Search repository for relevant controllers, schemas, database models, background jobs, and existing test coverage.
    - Identify existing architectural patterns, legacy constraints, and critical unknowns to feed Phase 2 grilling.
@@ -91,7 +88,7 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 #### Phase 2 — GRILLING with /grilling
 
 1. Load `grilling` skill and parse the `wayfinder.md` brief and project rules.
-2. Formulate 3 to 7 strategic questions covering Scope, Edge Cases, Data Contracts (UUIDv7 keys), and Performance/Security rules.
+2. Formulate 3 to 7 strategic questions covering Scope, Edge Cases, Data Contracts (identifier format), and Performance/Security rules.
 3. Present questions with trade-offs (Pros, Cons, Recommended Default).
 4. **Wait for explicit user response.** Do NOT proceed until user answers are recorded into a binding **Decision Log** (`decision-log.md`).
 
@@ -99,7 +96,7 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 
 1. Load `domain-modeling` skill and review `decision-log.md`.
 2. Define Aggregate Roots, Entities, Value Objects, and field types.
-3. **Enforce UUIDv7 primary keys** (`id: uuidv7`) across all domain models.
+3. Use the project's existing primary-key convention for new models (UUIDv7 only if there is none).
 4. Model state transitions (using Mermaid `stateDiagram-v2`) and entity relationships (using Mermaid `erDiagram`).
 5. Output `domain-model.md`.
 
@@ -127,14 +124,13 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 #### Phase 7 — TO-SPEC with /to-spec
 
 1. Load `to-spec` skill and consolidate all upstream evidence (`wayfinder.md`, `decision-log.md`, `domain-model.md`, `research-spike.md`, `prototype-report.md`).
-2. Produce a structured task specification at `docs/tasks/task.<reference>.md` featuring executive context, UUIDv7 domain models, numbered task steps with target file paths, verification commands, and rollback playbooks.
+2. Produce a structured task specification at `docs/tasks/task.<reference>.md` featuring executive context, domain models, numbered task steps with target file paths, verification commands, and rollback playbooks.
 3. Present `docs/tasks/task.<reference>.md` to user and **gate on explicit user approval**.
 
-#### Phase 8 — WORKFLOW CONTRACT with /agent-skillmap
+#### Phase 8 — WORKFLOW CONTRACT (optional)
 
-1. Load `agent-skillmap` (or `plan-to-skillmap`).
-2. Transform approved task specification into an executable workflow contract saved at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
-3. Wire the new feature workflow into the project's routing matrix.
+1. **Skip this phase** unless the project already has `skills/<projectSlug>/` or the user asked for a reusable contract. The approved `docs/tasks/task.<reference>.md` is the contract.
+2. When it applies: save it at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md` and add it to the existing routing matrix.
 
 #### Phase 9 — EXECUTE
 
@@ -170,12 +166,11 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 2. Update `docs/tasks/task.<reference>.md` and `walkthrough.md` with final verdict.
 3. Create a clean git commit on the local working branch.
 
-#### Phase 13 — SKILLS Update
+#### Phase 13 — LEARNINGS
 
 1. Review discoveries made during execution.
-2. Update existing project skills with new patterns, constraints, UUIDv7 schema details, or routing entries.
-3. Scaffold new internal workflow contracts if repeatable operations were introduced.
-4. Update root doc (`AGENTS.md`) if core system rules changed.
+2. If a durable project rule was discovered, add it to `AGENTS.md` (or the existing project skill). Keep it to a few lines.
+3. Do not create new skills, routers or manifests here unless the user asks.
 
 #### Phase 14 — CHANGELOG Generation
 
@@ -186,22 +181,11 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 
 ---
 
-### Scaffolding Target Projects
-
-When `agent-skillmap` scaffolds a project with `embed-aihero-radioactive`:
-1. It creates/adapts `skills/<projectSlug>/workflows/radioactive/SKILL.md` using this 14-phase embedded contract.
-2. It copies/scaffolds Matt Pocock's skills into `skills/<projectSlug>/workflows/mattpocock/` (`wayfinder`, `grilling`, `domain-modeling`, `research`, `prototype`, `to-spec`).
-3. It registers `radioactive` and `*` subcommands in `skills/<projectSlug>/template.json` and `reference/routing-matrix.md`.
-
----
-
 ### Outputs
 
-- Adapted `skills/<projectSlug>/workflows/radioactive/SKILL.md` contract.
-- Scaffolded `skills/<projectSlug>/workflows/mattpocock/` skills.
 - `wayfinder.md`: Orientation brief.
 - `decision-log.md`: Grilling decision log.
-- `domain-model.md`: Domain entity & state machine specification (with UUIDv7 keys).
+- `domain-model.md`: Domain entity & state machine specification .
 - `research-spike.md` / `prototype-report.md` (when triggered).
 - `docs/tasks/task.<reference>.md`: Approved execution plan.
 - `walkthrough.md`: Decision log, UX specs, review tables, fix history, and user changelog.
@@ -211,19 +195,19 @@ When `agent-skillmap` scaffolds a project with `embed-aihero-radioactive`:
 
 ### Review gate
 
-- [ ] Primary project skill loaded FIRST in Phase 1 before running `/wayfinder`.
+- [ ] Existing project rules read FIRST in Phase 1 before running `/wayfinder` (no scaffolding created).
 - [ ] Phase 1 Wayfinder orientation brief (`wayfinder.md`) created.
 - [ ] Phase 2 Socratic grilling questions answered by user and recorded in `decision-log.md`.
-- [ ] Phase 3 Domain model defined with UUIDv7 primary keys and Mermaid state/ER diagrams.
+- [ ] Phase 3 Domain model defined with the project's key convention and Mermaid state/ER diagrams.
 - [ ] Phase 4 Technical research spike completed (if technical risks existed).
 - [ ] Phase 5 Prototype POC validated (if prototype requested).
 - [ ] Phase 6 UX design system generated (if UI feature).
 - [ ] Phase 7 Technical specification (`docs/tasks/task.<reference>.md`) approved by user.
-- [ ] Phase 8 Workflow contract created & registered in project routing matrix.
+- [ ] Phase 8 skipped, or contract added to the existing project skill.
 - [ ] Phase 9 Sequential execution complete.
 - [ ] Phase 10 All test suites passing 100%.
 - [ ] Phase 12 Zero Blocker (🔴) or High (🟠) findings remaining.
-- [ ] Phase 13 Skills/workflows updated with new knowledge.
+- [ ] Phase 13 durable learnings recorded (or none found).
 - [ ] Phase 14 User-facing changelog generated.
 
 ---

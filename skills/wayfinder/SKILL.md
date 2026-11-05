@@ -40,7 +40,7 @@ Provide a structured codebase navigation and problem space orientation protocol 
 
 ### Invariants (Guardrails)
 
-1. **UUIDv7 Standard**: Always specify UUIDv7 for all primary keys and entity IDs in resource mappings.
+1. **Identifier Convention**: Record the identifier format the project already uses (UUIDv4, UUIDv7, serial…) so later phases follow it.
 2. **Evidence-Based Codebase Mapping**: Read actual entry points, route handlers, models, and configs before framing problem scope; do NOT assume directory or system structure.
 3. **Problem Space Framing**: Define explicit system boundaries, affected modules, entry/exit points, and critical unknowns.
 4. **Orientation Summary**: Produce a clear orientation summary (`wayfinder.md` or conversation context) to anchor subsequent grilling, modeling, or research phases.
@@ -74,7 +74,7 @@ Provide a structured codebase navigation and problem space orientation protocol 
 1. Output a structured summary (`wayfinder.md`) covering:
    - **System Context**: Overview of affected subsystems.
    - **Affected Modules**: Explicit file paths and components.
-   - **Key Architectural Constraints**: Security, data integrity, UUIDv7 primary keys, and performance boundaries.
+   - **Key Architectural Constraints**: Security, data integrity, existing ID convention, and performance boundaries.
    - **Critical Unknowns**: Specific questions to be resolved during grilling or technical research.
 
 ---
@@ -89,7 +89,7 @@ Provide a structured codebase navigation and problem space orientation protocol 
 
 - [ ] Codebase entry points and file targets verified via code search and file viewing.
 - [ ] Data flows and system boundaries mapped.
-- [ ] UUIDv7 identity standard specified for entity identifiers.
+- [ ] Existing identifier convention recorded.
 - [ ] Critical unknowns documented to feed Phase 2 grilling and technical research.
 
 ---

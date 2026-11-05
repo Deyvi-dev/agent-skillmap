@@ -1,7 +1,6 @@
 ---
 name: radioactive
-description: |
-  Full-cycle 11-phase development workflow. Chains request classification, discovery, UX design, planning, workflow contract creation, execution, testing, quality review, iterative fix loop, skill updates, and changelog generation.
+description: Full-cycle 11-phase feature workflow (discover, plan, execute, test, review, fix, changelog) that runs directly in any project with no setup.
 argument-hint: "<feature or task description>"
 ---
 
@@ -44,9 +43,10 @@ Provide a portable, end-to-end 11-phase development lifecycle workflow that enfo
 ### Invariants (Guardrails)
 
 1. **Sequential Phase Pipeline**: All 11 phases must execute in exact numerical order. No phase skipping.
-2. **Abstract Entrypoint Fallback**:
-   - **If a primary project skill exists** (e.g. `skills/<projectSlug>/SKILL.md` or `.agents/skills/<projectSlug>/SKILL.md` or `AGENTS.md`): Read it, classify request, and enforce project-specific hard rules and routing.
-   - **If NO primary project skill exists**: Trigger `/agent-skillmap` init (or `plan-to-skillmap`) to scaffold baseline project context and routing before proceeding.
+2. **Zero setup, standalone command**: `/radioactive <task>` runs as-is in any repository.
+   - Read whatever project context already exists (`AGENTS.md`, `CLAUDE.md`, `README.md`, and `skills/<projectSlug>/SKILL.md` if present) and enforce its rules.
+   - If none exists, derive stack, conventions and rules from the code itself (package manifests, schema, existing modules) and continue.
+   - **Never** scaffold a project skill, router, `template.json`, routing matrix, or `.claude/skills/<project>` shim as a prerequisite, and never redirect the user to `/<project> radioactive`. Run `/agent-skillmap` only if the user explicitly asks for it.
 3. **Socratic Discovery Gate**: Phase 2 must present discovery questions and wait for explicit user response/confirmation before Phase 3/4.
 4. **Plan Approval Gate**: Phase 4 must generate a structured task breakdown at `docs/tasks/task.<reference>.md` and obtain explicit user approval before Phase 5.
 5. **Executable Workflow Contract**: Phase 5 must scaffold a reusable workflow contract at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
@@ -60,26 +60,24 @@ Provide a portable, end-to-end 11-phase development lifecycle workflow that enfo
 ### Procedure
 
 ```
-Phase 1  — CLASSIFY & INIT  → Project skill or /agent-skillmap init
+Phase 1  — CLASSIFY         → Read existing project rules (no scaffolding)
 Phase 2  — DISCOVER         → /brainstorming (Socratic questions & decision log)
 Phase 3  — UX DESIGN        → /ui-ux-pro-max or frontend-design (if UI involved)
 Phase 4  — PLAN             → /plan-writing (structured task breakdown in docs/tasks/task.<reference>.md)
-Phase 5  — CONTRACT         → /agent-skillmap (scaffold feature contract)
+Phase 5  — CONTRACT         → Optional: feature contract only if the project already uses skills/<projectSlug>/
 Phase 6  — EXECUTE          → Implement tasks sequentially with evidence-based edits
 Phase 7  — TESTS            → Project test runner (specs/tests for all changed code)
 Phase 8  — REVIEW           → /thermo-nuclear-code-quality-review or /doc-review
 Phase 9  — FIX LOOP         → /thermo-fix × up to 3 (resolve 🔴→🟠→🟡, verify build, re-review)
-Phase 10 — SKILLS           → /agent-skillmap (update skills & internal contracts)
+Phase 10 — LEARNINGS        → Record new rules in AGENTS.md / existing project skill
 Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facing release note)
 ```
 
-#### Phase 1 — CLASSIFY & INIT
+#### Phase 1 — CLASSIFY
 
-1. Check for the existence of the primary project entry skill (`skills/<projectSlug>/SKILL.md`, `.agents/skills/<projectSlug>/SKILL.md`, or `AGENTS.md`).
-2. **Branch logic**:
-   - **Option A (Project skill exists)**: Load the skill, classify the task using the project's routing matrix, and extract hard constraints and domain boundaries.
-   - **Option B (Project skill does NOT exist)**: Initialize `/agent-skillmap` (run scaffolding / `plan-to-skillmap` flow) to analyze the project structure, detect `projectSlug` and `techStack`, and establish a baseline entry skill.
-3. Output a 1-paragraph context summary and the governing workflow contract.
+1. Read the project context that already exists: `AGENTS.md` / `CLAUDE.md`, `README.md`, and `skills/<projectSlug>/SKILL.md` (with its routing matrix) only if it is present.
+2. If there is no written project context, infer `techStack`, conventions (ID format, ORM, test runner, folder layout) and hard rules from the code. Do not create files for this.
+3. Output a 1-paragraph context summary: stack, rules that apply, and the modules the task touches.
 
 #### Phase 2 — DISCOVER with /brainstorming
 
@@ -101,11 +99,10 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 2. Produce a structured task specification at `docs/tasks/task.<reference>.md` containing context, tasks with file targets, explicit dependencies, and verification criteria.
 3. Present plan to user and **gate on explicit approval**.
 
-#### Phase 5 — CONTRACT with /agent-skillmap
+#### Phase 5 — CONTRACT (optional)
 
-1. Load `agent-skillmap` (or `plan-to-skillmap`).
-2. Transform the approved plan into an executable workflow contract saved at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
-3. Wire the new feature workflow into the project's routing matrix.
+1. **Skip this phase** unless the project already has `skills/<projectSlug>/` or the user asked for a reusable contract. The approved `docs/tasks/task.<reference>.md` is the contract.
+2. When it applies: save the contract at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md` and add it to the existing routing matrix.
 
 #### Phase 6 — EXECUTE
 
@@ -141,12 +138,11 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 2. Update `docs/tasks/task.<reference>.md` and `walkthrough.md` with final verdict.
 3. Create a clean git commit on the local working branch.
 
-#### Phase 10 — SKILLS Update
+#### Phase 10 — LEARNINGS
 
 1. Review discoveries made during execution.
-2. Update existing project skills with new patterns, constraints, or schema details.
-3. Scaffold new internal workflow contracts if repeatable operations were introduced.
-4. Update root doc (`AGENTS.md`) if core system rules changed.
+2. If a durable project rule was discovered, add it to `AGENTS.md` (or the existing project skill). Keep it to a few lines.
+3. Do not create new skills, routers or manifests here unless the user asks.
 
 #### Phase 11 — CHANGELOG Generation
 
@@ -161,23 +157,23 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 
 - `docs/tasks/task.<reference>.md`: Executed task breakdown with completion status.
 - `walkthrough.md`: Decision log, UX specs, review tables, fix history, and user changelog.
-- `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`: Executable contract for the feature.
-- Updated project skills and routing matrix.
+- Optional: `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md` (only if the project already uses project skills).
+- New durable rules added to `AGENTS.md` (when any were discovered).
 - Clean git commit on local branch.
 
 ---
 
 ### Review gate
 
-- [ ] Phase 1 project skill loaded or initialized via `/agent-skillmap`.
+- [ ] Phase 1 project context read (no scaffolding created).
 - [ ] Phase 2 discovery questions answered by user.
 - [ ] Phase 3 UX design system generated (if UI feature).
 - [ ] Phase 4 plan approved by user.
-- [ ] Phase 5 workflow contract created & registered in project routing matrix.
+- [ ] Phase 5 skipped, or contract added to the existing project skill.
 - [ ] Phase 6 execution complete.
 - [ ] Phase 7 all test suites passing.
 - [ ] Phase 9 zero Blocker or High findings remaining.
-- [ ] Phase 10 skills/workflows updated with new knowledge.
+- [ ] Phase 10 durable learnings recorded (or none found).
 - [ ] Phase 11 user-facing changelog generated.
 
 ---

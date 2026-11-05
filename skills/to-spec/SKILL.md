@@ -44,7 +44,7 @@ Synthesize orientation briefs, grilling decision logs, domain models, technical 
 ### Invariants (Guardrails)
 
 1. **Unambiguous Task Mapping**: Every task in `docs/tasks/task.<reference>.md` must specify exact target file paths, explicit dependencies, step-by-step code changes, and verification commands.
-2. **Enforce UUIDv7 Identity Standards**: Ensure all data models, schemas, and resource IDs in the spec mandate UUIDv7 for time-ordered sorting.
+2. **Consistent Identifiers**: New data models in the spec use the project's existing ID convention (UUIDv7 only when there is none).
 3. **Strict Phase Gating**: The generated specification (`docs/tasks/task.<reference>.md`) must obtain explicit user approval before execution (Phase 9 of embed-aihero-radioactive).
 4. **Isolated Task File Path**: Save specifications under `docs/tasks/task.<reference>.md` to avoid cluttering root and prevent overwriting tasks from other sessions.
 
@@ -55,7 +55,7 @@ Synthesize orientation briefs, grilling decision logs, domain models, technical 
 #### 1) Consolidate Upstream Evidence
 
 1. Gather all upstream artifacts: `wayfinder.md`, `decision-log.md`, `domain-model.md`, `research-spike.md`, and `prototype-report.md`.
-2. Verify that all critical unknowns have been resolved and domain entities have UUIDv7 primary keys.
+2. Verify that all critical unknowns have been resolved and domain entities follow the project's ID convention.
 
 #### 2) Structure Technical Specification (`docs/tasks/task.<reference>.md`)
 
@@ -67,10 +67,10 @@ Produce a structured task specification file at `docs/tasks/task.<reference>.md`
 ## 1. Executive Context & Objectives
 - **Goal**: Clear 1-2 sentence objective.
 - **Scope**: Explicit In-Scope vs. Out-of-Scope boundaries.
-- **Key Invariants**: UUIDv7 primary keys, security rules, performance SLA.
+- **Key Invariants**: ID convention, security rules, performance SLA.
 
 ## 2. Architecture & Domain Model
-- Summary of entities, UUIDv7 schemas, state machines, and API endpoints.
+- Summary of entities, schemas, state machines, and API endpoints.
 - Embedded Mermaid ER / State diagrams from Phase 3.
 
 ## 3. Sequential Task Breakdown
@@ -116,7 +116,7 @@ Produce a structured task specification file at `docs/tasks/task.<reference>.md`
 
 - [ ] All upstream artifacts (wayfinder, decision log, domain model, research, prototype) integrated.
 - [ ] Tasks contain exact file paths, explicit edits, and verification commands.
-- [ ] UUIDv7 primary key standard enforced for all data models.
+- [ ] All new data models follow the project's ID convention.
 - [ ] Specification presented to user and explicit approval obtained.
 
 ---

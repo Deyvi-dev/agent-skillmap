@@ -21,9 +21,10 @@ workflow becomes its own slash command, with autocomplete and an argument hint:
 
 ```text
 /radioactive add a payment module with Stripe webhooks
+/embed-aihero-radioactive same, with the AI Hero discovery phases
 /brainstorming offline mode for the mobile app
 /thermo-nuclear-code-quality-review src/payments
-/agent-skillmap                      # scaffold skills for this project
+/agent-skillmap                      # optional: scaffold skills for this project
 ```
 
 Non-interactive (Claude Code only, every skill):
@@ -35,9 +36,13 @@ npx skills add Deyvi-dev/agent-skillmap --skill '*' -a claude-code -y
 Or, without the skills CLI: `npx @deyvi-dev/agent-skillmap init` copies every skill into
 `.claude/skills/`.
 
-The first time, run `/agent-skillmap` (or start with `/radioactive <task>`, which
-does it for you) so the agent creates the project entry skill at
-`skills/<projectSlug>/SKILL.md`.
+That's it: no setup per project. `/radioactive <task>` works right away in any
+repository. It reads `AGENTS.md` / `CLAUDE.md` if they exist (or infers the
+conventions from the code) and never creates a project router first, so you
+never need `/<project> radioactive`.
+
+`/agent-skillmap` is optional: use it only if you want per-module project skills
+at `skills/<projectSlug>/`; `/radioactive` will read them when present.
 
 ### Repository layout
 
@@ -195,7 +200,11 @@ routing section in the entry `SKILL.md`.
 
 ---
 
-## Command routing
+## Command routing (optional project skills)
+
+Only for project skills you scaffold with `/agent-skillmap`. The installed
+commands (`/radioactive`, `/embed-aihero-radioactive`, `/brainstorming`…) are
+always called directly, never through `/<skillName>`.
 
 After scaffold, invoke internal workflows through the project entry skill
 (router-only):
@@ -230,7 +239,7 @@ actual workflows (deploy, test, migrate, etc).
 | `embed-aihero-radioactive` | Full 14-phase development lifecycle embedding Matt Pocock / AI Hero skills | Deep discovery, domain modeling & quality-gated delivery |
 | `wayfinder` | Strategic codebase orientation & intent framing | Pre-discovery codebase mapping & entry point identification |
 | `grilling` | Socratic grilling & assumption interrogation protocol | Requirement clarification, trade-off & edge-case stress testing |
-| `domain-modeling` | Domain entity, aggregate, state transition & schema modeling | Core domain design & UUIDv7 schema specification |
+| `domain-modeling` | Domain entity, aggregate, state transition & schema modeling | Core domain design & schema specification |
 | `research` | Technical research spikes, API feasibility & benchmarking | Assessing technical risks & third-party dependencies |
 | `prototype` | Disposable proof-of-concept prototyping & visual spikes | Validating UI/UX or complex logic hypotheses before spec |
 | `to-spec` | Converts discovery, domain models & spikes into actionable specs | Synthesizing docs/tasks/task.<reference>.md execution plans from upstream evidence |
