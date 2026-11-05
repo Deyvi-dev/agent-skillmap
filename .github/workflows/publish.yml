@@ -15,5 +15,5 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
       - run: npm install -g npm@latest
-      - run: node bin/skillmap.js init --dir tmp-smoke && test -f tmp-smoke/SKILL.md && rm -rf tmp-smoke
+      - run: node bin/agent-skillmap.js init --dir tmp-smoke && test -f tmp-smoke/radioactive/SKILL.md && rm -rf tmp-smoke
       - run: npm publish

@@ -1,4 +1,4 @@
-# skillmap
+# agent-skillmap
 
 A meta-skill that teaches your AI agent how to build operational skills
 for each module and system in your project — so it loads only the context
@@ -13,19 +13,42 @@ and hands off to the next step. Less tokens, more precision.
 ## Quick run
 
 ```bash
-npx skillmap init          # copies the skill into .claude/skills/skillmap
-# or
-npx skills add Deyvi-dev/skillmap
+npx skills add Deyvi-dev/agent-skillmap
 ```
 
-Then call the agent in your target repository with a direct prompt like:
+Pick your agent (Claude Code, Codex, Cursor…) and install all skills. Each
+workflow becomes its own slash command, with autocomplete and an argument hint:
 
 ```text
-skillmap this project.
+/radioactive add a payment module with Stripe webhooks
+/brainstorming offline mode for the mobile app
+/thermo-nuclear-code-quality-review src/payments
+/agent-skillmap                      # scaffold skills for this project
 ```
 
-After that, wait for the agent to finish the scaffold. The expected first
-deliverable is the main project skill file at `skills/<projectSlug>/SKILL.md`.
+Non-interactive (Claude Code only, every skill):
+
+```bash
+npx skills add Deyvi-dev/agent-skillmap --skill '*' -a claude-code -y
+```
+
+Or, without the skills CLI: `npx agent-skillmap init` copies every skill into
+`.claude/skills/`.
+
+The first time, run `/agent-skillmap` (or start with `/radioactive <task>`, which
+does it for you) so the agent creates the project entry skill at
+`skills/<projectSlug>/SKILL.md`.
+
+### Repository layout
+
+```
+skills/
+  agent-skillmap/SKILL.md   ← entry skill (scaffolds your project's skills)
+  agent-skillmap/runbooks/  ← operator playbooks
+  radioactive/SKILL.md      ← one folder per slash command
+  brainstorming/SKILL.md
+  ...
+```
 
 ---
 
@@ -35,7 +58,7 @@ You have a project with multiple modules. Your AI agent loads everything
 every time — all rules, all context, all history. That burns tokens and
 dilutes focus.
 
-skillmap lets the agent build **scoped skills per module**, each
+agent-skillmap lets the agent build **scoped skills per module**, each
 with its own contract, inputs, outputs, and review gates. The agent
 only loads what's relevant to the current task.
 
@@ -43,11 +66,11 @@ only loads what's relevant to the current task.
 
 ## How it works in practice
 
-**Without skillmap:**
+**Without agent-skillmap:**
 You tell your agent "add a payment module". It loads your entire
 AGENTS.md (500+ lines), guesses conventions, and wings it.
 
-**With skillmap:**
+**With agent-skillmap:**
 
 1. You trigger this skill once: *"set up my project"* — it asks a few
    questions and scaffolds `skills/<project>/` with routing, contracts,
@@ -89,7 +112,7 @@ agent to scaffold `skills/<projectSlug>/` with router commands and manifests.
 
 ---
 
-## How skillmap routes
+## How agent-skillmap routes
 
 ```mermaid
 flowchart TD
@@ -108,7 +131,7 @@ flowchart TD
 
 ## Getting started
 
-When you trigger skillmap, the agent will ask:
+When you trigger agent-skillmap, the agent will ask:
 
 - **projectSlug** — short name for the repo (e.g. `my-backend`)
 - **baseBranch** — main integration branch (e.g. `main`, `develop`)
@@ -205,12 +228,12 @@ actual workflows (deploy, test, migrate, etc).
 | Workflow | What it does | When to use |
 |----------|-------------|-------------|
 | `embed-aihero-radioactive` | Full 14-phase development lifecycle embedding Matt Pocock / AI Hero skills | Deep discovery, domain modeling & quality-gated delivery |
-| `mattpocock/wayfinder` | Strategic codebase orientation & intent framing | Pre-discovery codebase mapping & entry point identification |
-| `mattpocock/grilling` | Socratic grilling & assumption interrogation protocol | Requirement clarification, trade-off & edge-case stress testing |
-| `mattpocock/domain-modeling` | Domain entity, aggregate, state transition & schema modeling | Core domain design & UUIDv7 schema specification |
-| `mattpocock/research` | Technical research spikes, API feasibility & benchmarking | Assessing technical risks & third-party dependencies |
-| `mattpocock/prototype` | Disposable proof-of-concept prototyping & visual spikes | Validating UI/UX or complex logic hypotheses before spec |
-| `mattpocock/to-spec` | Converts discovery, domain models & spikes into actionable specs | Synthesizing docs/tasks/task.<reference>.md execution plans from upstream evidence |
+| `wayfinder` | Strategic codebase orientation & intent framing | Pre-discovery codebase mapping & entry point identification |
+| `grilling` | Socratic grilling & assumption interrogation protocol | Requirement clarification, trade-off & edge-case stress testing |
+| `domain-modeling` | Domain entity, aggregate, state transition & schema modeling | Core domain design & UUIDv7 schema specification |
+| `research` | Technical research spikes, API feasibility & benchmarking | Assessing technical risks & third-party dependencies |
+| `prototype` | Disposable proof-of-concept prototyping & visual spikes | Validating UI/UX or complex logic hypotheses before spec |
+| `to-spec` | Converts discovery, domain models & spikes into actionable specs | Synthesizing docs/tasks/task.<reference>.md execution plans from upstream evidence |
 | `radioactive` | Full 11-phase development lifecycle workflow | End-to-end features, refactors, and quality-gated delivery |
 | `brainstorming` | Socratic discovery protocol & decision log | Requirement discovery & scope clarification |
 | `plan-writing` | Structured task breakdown with dependencies & verification | Pre-implementation task planning |
@@ -220,8 +243,8 @@ actual workflows (deploy, test, migrate, etc).
 | `thermo-fix` | Automated review fix loop (up to 3×) with build check | Applying review findings & build verification |
 | `changelog-generator` | Customer-facing release notes from git commits | Generating user changelog |
 | `document` | Builds docs from git diff evidence | After implementation is done |
-| `review` | Validates docs with deterministic pass/fail | Auto-step after `document` |
-| `changelog` | Generates changelog from approved docs | After `review` passes |
+| `doc-review` | Validates docs with deterministic pass/fail | Auto-step after `document` |
+| `changelog` | Generates changelog from approved docs | After `doc-review` passes |
 | `linear` | Creates Linear projects/issues via MCP | Multi-PR initiatives |
 | `mcp-linear-planner` | Preflight check + execution plan for Linear | When you need stricter control |
 | `mcp-linear-sync` | Executes planned Linear operations | After `planner` validates |
@@ -251,7 +274,7 @@ actual workflows (deploy, test, migrate, etc).
 | `c4-architecture` | Generates C4 architecture documentation | Produces context/container/component/deployment Mermaid diagrams |
 | `plan-to-skillmap` | Converts a technical plan into project skills + manifests | After Plan mode or before multi-workflow implementation |
 
-### Plan → skillmap example
+### Plan → agent-skillmap example
 
 ```text
 /<my-backend> plan-to-skillmap
@@ -263,13 +286,13 @@ Project: my-backend, baseBranch: main, techStack: NestJS + PostgreSQL
 Expected output: `skills/my-backend/SKILL.md`, `template.json`, workflow
 contracts under `workflows/`, and updated root doc links.
 
-### Chained flow example (document → review → changelog)
+### Chained flow example (document → doc-review → changelog)
 
 ```
 attempt = 1
 while attempt <= 3:
   doc = run(document)
-  review = run(review, input=doc)
+  review = run(doc-review, input=doc)
   if review.pass:
     run(changelog, input=doc)
     break
@@ -277,7 +300,7 @@ while attempt <= 3:
 ```
 
 1. `document` produces docs from implementation evidence.
-2. `review` validates against the evidence.
+2. `doc-review` validates against the evidence.
 3. If fail → feed findings back to `document`, retry (max 3).
 4. If pass → `changelog` generates the entry.
 
@@ -324,7 +347,7 @@ agent runs). Workflow SKILL files are agent-facing contract definitions.
 
 ## How to use this repo
 
-1. Read `SKILL.md` for the full skillmap procedure.
+1. Read `skills/agent-skillmap/SKILL.md` for the full procedure.
 2. Trigger the skill in your agent with your project details.
 3. The agent scaffolds the structure and wires it into your root doc.
 4. Adjust workflows as needed — it's markdown, edit in conversation.
@@ -338,7 +361,7 @@ from individual workflows.
 
 ## Credits
 
-skillmap is maintained by [Deyvi](https://github.com/Deyvi-dev) and is a fork of
+agent-skillmap is maintained by [Deyvi](https://github.com/Deyvi-dev) and is based on
 [devton/agentic-workflow-blueprint](https://github.com/devton/agentic-workflow-blueprint)
-by [devton](https://github.com/devton). The `mattpocock/*` workflows adapt the methodology of
+by [devton](https://github.com/devton). The `wayfinder`, `grilling`, `domain-modeling`, `research`, `prototype` and `to-spec` workflows adapt the methodology of
 Matt Pocock / [AI Hero](https://www.aihero.dev).
