@@ -32,7 +32,7 @@ Non-interactive (Claude Code only, every skill):
 npx skills add Deyvi-dev/agent-skillmap --skill '*' -a claude-code -y
 ```
 
-Or, without the skills CLI: `npx agent-skillmap init` copies every skill into
+Or, without the skills CLI: `npx @deyvi-dev/agent-skillmap init` copies every skill into
 `.claude/skills/`.
 
 The first time, run `/agent-skillmap` (or start with `/radioactive <task>`, which
