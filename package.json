@@ -31,11 +31,17 @@
     "skills/",
     "README.md"
   ],
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node scripts/validate.mjs",
+    "prepublishOnly": "node scripts/validate.mjs"
+  },
   "engines": {
     "node": ">=18"
   },
   "publishConfig": {
     "access": "public",
-    "provenance": true
+    "provenance": true,
+    "registry": "https://registry.npmjs.org/"
   }
 }

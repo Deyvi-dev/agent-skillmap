@@ -32,6 +32,7 @@ Produce clear, audience-appropriate architecture documentation using the C4 mode
 
 ### Invariants
 
+- **Markdown only — never generate HTML manuals**: documentation, manuals and diagrams are written as Markdown (Mermaid for diagrams). Do not create `.html` manuals, HTML documentation sites or any HTML manual workflow, even when asked to "make a manual".
 - Context and container views are baseline deliverables unless explicitly out of scope.
 - Diagram detail must match audience needs and avoid unnecessary complexity.
 - Labels and relationships must be explicit, directional, and technology-aware.

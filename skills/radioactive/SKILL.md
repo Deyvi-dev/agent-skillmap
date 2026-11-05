@@ -53,6 +53,7 @@ Provide a portable, end-to-end 11-phase development lifecycle workflow that enfo
 6. **Pass/Fail Quality Gate**: Phase 7 specs must pass 100%. Phase 9 fix loop must resolve all 🔴 (Blockers) and 🟠 (High) findings before declaration of completion.
 7. **Institutional Memory**: Phase 10 must capture newly discovered patterns into workflow contracts and update project documentation.
 8. **Operational Safety for Infra Tasks**: When the feature affects network, infrastructure, IaC, or OS baselines, execution must include explicit rollback, change window alignment, and post-change health validation.
+9. **Markdown only — never generate HTML manuals**: documentation, manuals and diagrams are written as Markdown (Mermaid for diagrams). Do not create `.html` manuals, HTML documentation sites or any HTML manual workflow, even when asked to "make a manual".
 
 ---
 

@@ -9,3 +9,7 @@
 - Link sibling skills with `../<name>/SKILL.md` so links still resolve after install.
 - Avoid names that clash with built-in agent commands (e.g. `review`, `init`).
 - The entry skill is `skills/agent-skillmap/SKILL.md`; runbooks live next to it.
+- Documentation is Markdown only. HTML manuals (the removed HTML manual workflow) must
+  never come back; `npm test` fails on any `.html` file or reference to it.
+- Run `npm test` before committing. Never publish from a laptop; releases go
+  through the GitHub Actions `Publish to npm` workflow.

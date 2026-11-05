@@ -32,6 +32,7 @@ Create or update project documentation from the implementation evidence
 
 ### Invariants
 
+- **Markdown only — never generate HTML manuals**: documentation, manuals and diagrams are written as Markdown (Mermaid for diagrams). Do not create `.html` manuals, HTML documentation sites or any HTML manual workflow, even when asked to "make a manual".
 - Use evidence from actual code changes.
 - Keep facts aligned with diff and existing behavior.
 - Do not invent decisions or results not present in evidence.

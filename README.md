@@ -359,6 +359,22 @@ from individual workflows.
 
 ---
 
+## Releasing (maintainers)
+
+Publishing runs only from GitHub Actions via npm trusted publishing (OIDC):
+no npm token is stored anywhere, and every version carries a provenance
+attestation linking it to this repository and commit.
+
+1. `npm version patch|minor|major` (updates `package.json` and creates the tag).
+2. `git push --follow-tags`.
+3. Create a GitHub Release for the tag. The `Publish to npm` workflow validates
+   the skills, checks that the tag matches `package.json` and publishes.
+
+`npm test` validates every skill (frontmatter, links, no root `SKILL.md`, no
+HTML manuals) and runs automatically before any publish.
+
+---
+
 ## Credits
 
 agent-skillmap is maintained by [Deyvi](https://github.com/Deyvi-dev) and is based on

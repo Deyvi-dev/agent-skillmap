@@ -63,6 +63,7 @@ It also carries runbook examples under `./runbooks/` to show operator-facing exe
 
 ### Invariants (guardrails)
 
+- **Markdown only — never generate HTML manuals**: documentation, manuals and diagrams are written as Markdown (Mermaid for diagrams). Do not create `.html` manuals, HTML documentation sites or any HTML manual workflow, even when asked to "make a manual".
 - Progressive disclosure: root doc stays short; details live behind links.
 - Executable contracts: every workflow is written as a contract the agent can follow:
   - `Goal`, `Scope`, `Triggers`, `Inputs`, `Invariants`, `Procedure`, `Outputs`, `Review gate`, `References`.
