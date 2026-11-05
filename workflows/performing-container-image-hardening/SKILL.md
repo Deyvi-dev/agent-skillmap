@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.performing-container-image-hardening
+## skillmap.workflow.performing-container-image-hardening
 
 ### Goal
 

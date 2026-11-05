@@ -3,7 +3,7 @@ name: domain-modeling
 description: Domain entity definition, value objects, aggregate boundaries, state transition modeling, and business invariant contracts.
 ---
 
-## agentic-workflows-blueprint.workflow.mattpocock.domain-modeling
+## skillmap.workflow.mattpocock.domain-modeling
 
 ### Goal
 

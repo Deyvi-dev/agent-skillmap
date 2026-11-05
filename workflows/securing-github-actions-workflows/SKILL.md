@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.securing-github-actions-workflows
+## skillmap.workflow.securing-github-actions-workflows
 
 ### Goal
 

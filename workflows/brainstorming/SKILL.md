@@ -3,7 +3,7 @@ name: brainstorming
 description: Socratic questioning protocol and user communication protocol to uncover requirements, edge cases, and scope.
 ---
 
-## agentic-workflows-blueprint.workflow.brainstorming
+## skillmap.workflow.brainstorming
 
 ### Goal
 

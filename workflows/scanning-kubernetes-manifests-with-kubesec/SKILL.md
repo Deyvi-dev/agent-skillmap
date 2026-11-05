@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.scanning-kubernetes-manifests-with-kubesec
+## skillmap.workflow.scanning-kubernetes-manifests-with-kubesec
 
 ### Goal
 

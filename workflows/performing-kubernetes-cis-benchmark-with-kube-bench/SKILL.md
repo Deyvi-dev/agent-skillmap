@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.performing-kubernetes-cis-benchmark-with-kube-bench
+## skillmap.workflow.performing-kubernetes-cis-benchmark-with-kube-bench
 
 ### Goal
 

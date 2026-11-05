@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.scanning-docker-images-with-trivy
+## skillmap.workflow.scanning-docker-images-with-trivy
 
 ### Goal
 

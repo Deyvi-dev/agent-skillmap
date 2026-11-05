@@ -1,0 +1,44 @@
+{
+  "name": "skillmap",
+  "version": "0.1.0",
+  "description": "Map your codebase into scoped AI agent skills: a router plus per-module workflows with review gates, so the agent loads only the context it needs.",
+  "keywords": [
+    "ai",
+    "agents",
+    "claude-code",
+    "codex",
+    "skills",
+    "agents-md",
+    "claude-md",
+    "context",
+    "workflow",
+    "skill-routing"
+  ],
+  "homepage": "https://github.com/Deyvi-dev/skillmap#readme",
+  "bugs": "https://github.com/Deyvi-dev/skillmap/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deyvi-dev/skillmap.git"
+  },
+  "license": "UNLICENSED",
+  "author": "Deyvi (https://github.com/Deyvi-dev)",
+  "type": "module",
+  "bin": {
+    "skillmap": "bin/skillmap.js"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md",
+    "AGENTS.md",
+    "workflows/",
+    "runbooks/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

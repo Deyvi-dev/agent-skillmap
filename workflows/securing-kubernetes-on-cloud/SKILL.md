@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.securing-kubernetes-on-cloud
+## skillmap.workflow.securing-kubernetes-on-cloud
 
 ### Goal
 

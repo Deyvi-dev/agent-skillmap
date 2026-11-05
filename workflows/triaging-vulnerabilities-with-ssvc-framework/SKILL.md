@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.triaging-vulnerabilities-with-ssvc-framework
+## skillmap.workflow.triaging-vulnerabilities-with-ssvc-framework
 
 ### Goal
 

@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.implementing-rbac-hardening-for-kubernetes
+## skillmap.workflow.implementing-rbac-hardening-for-kubernetes
 
 ### Goal
 

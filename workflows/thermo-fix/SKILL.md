@@ -3,7 +3,7 @@ name: thermo-fix
 description: Run a full code quality review on changed files, apply every identified fix, and iterate until approved (up to 3×).
 ---
 
-## agentic-workflows-blueprint.workflow.thermo-fix
+## skillmap.workflow.thermo-fix
 
 ### Goal
 

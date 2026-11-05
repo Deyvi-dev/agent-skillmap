@@ -1,4 +1,4 @@
-# Runbook: Plan -> Blueprint
+# Runbook: Plan -> skillmap
 
 ## Objective
 
@@ -26,9 +26,9 @@ Convert a technical plan into a durable, executable skill structure the agent ca
 ## Steps
 
 1. Invoke the project entry skill router with subcommand:
-   - `/<skillName> plan-to-blueprint`
-   - If subcommands are not parsed, invoke `/<skillName>` and pass `plan-to-blueprint` in the prompt.
-2. Run workflow `plan-to-blueprint` using `technicalPlan` as primary evidence.
+   - `/<skillName> plan-to-skillmap`
+   - If subcommands are not parsed, invoke `/<skillName>` and pass `plan-to-skillmap` in the prompt.
+2. Run workflow `plan-to-skillmap` using `technicalPlan` as primary evidence.
 3. Confirm proposed `workflowsWanted` mapping (plan section -> workflow id).
    - Ensure infra plans map to explicit workflows (`network-engineering`, `infra-operations`, `iac`, `os-platform`) when applicable.
 4. Wait for scaffold outputs:

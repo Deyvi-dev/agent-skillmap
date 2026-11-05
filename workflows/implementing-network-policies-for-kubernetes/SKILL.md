@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.implementing-network-policies-for-kubernetes
+## skillmap.workflow.implementing-network-policies-for-kubernetes
 
 ### Goal
 

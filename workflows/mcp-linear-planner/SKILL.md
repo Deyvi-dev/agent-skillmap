@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.mcp-linear-planner
+## skillmap.workflow.mcp-linear-planner
 
 ### Goal
 

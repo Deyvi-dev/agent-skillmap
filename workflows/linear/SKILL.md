@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.linear
+## skillmap.workflow.linear
 
 ### Goal
 

@@ -3,7 +3,7 @@ name: plan-writing
 description: Generate structured implementation plans with task breakdowns, dependencies, and verification criteria.
 ---
 
-## agentic-workflows-blueprint.workflow.plan-writing
+## skillmap.workflow.plan-writing
 
 ### Goal
 

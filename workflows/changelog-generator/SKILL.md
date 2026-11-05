@@ -3,7 +3,7 @@ name: changelog-generator
 description: Generate customer-facing changelog entries from git commits and PR diffs.
 ---
 
-## agentic-workflows-blueprint.workflow.changelog-generator
+## skillmap.workflow.changelog-generator
 
 ### Goal
 

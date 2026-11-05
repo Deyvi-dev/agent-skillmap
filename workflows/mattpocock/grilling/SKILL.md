@@ -3,7 +3,7 @@ name: grilling
 description: Deep Socratic grilling and interrogation protocol to stress-test assumptions, clarify non-functional requirements, and resolve edge cases before design.
 ---
 
-## agentic-workflows-blueprint.workflow.mattpocock.grilling
+## skillmap.workflow.mattpocock.grilling
 
 ### Goal
 

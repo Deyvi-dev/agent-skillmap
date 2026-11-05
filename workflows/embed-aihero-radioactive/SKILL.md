@@ -1,10 +1,10 @@
 ---
 name: embed-aihero-radioactive
 description: |
-  Scaffold option & workflow blueprint that adapts a project's /radioactive development lifecycle by embedding Matt Pocock / AI Hero skills (wayfinder, grilling, domain-modeling, research, prototype, to-spec), starting with project skill classification followed by wayfinder orientation.
+  Scaffold option & workflow that adapts a project's /radioactive development lifecycle by embedding Matt Pocock / AI Hero skills (wayfinder, grilling, domain-modeling, research, prototype, to-spec), starting with project skill classification followed by wayfinder orientation.
 ---
 
-## agentic-workflows-blueprint.workflow.embed-aihero-radioactive
+## skillmap.workflow.embed-aihero-radioactive
 
 ### Goal
 
@@ -48,7 +48,7 @@ Adapt and scaffold a project's `radioactive` workflow (`skills/<projectSlug>/wor
 3. **UUIDv7 Primary Key Mandatory Rule**: Every entity primary key or unique resource identifier MUST use UUIDv7 for time-ordered sorting and distributed uniqueness.
 4. **Socratic Grilling Gate**: Phase 2 must present grilling questions and wait for explicit user response/confirmation before Phase 3 domain modeling.
 5. **Spec Approval Gate**: Phase 7 must generate a structured task specification at `docs/tasks/task.<reference>.md` and obtain explicit user approval before Phase 8/9 execution.
-6. **Executable Blueprint Contract**: Phase 8 must scaffold a reusable workflow contract at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
+6. **Executable Workflow Contract**: Phase 8 must scaffold a reusable workflow contract at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
 7. **Pass/Fail Quality Gate**: Phase 10 specs must pass 100%. Phase 12 fix loop must resolve all 🔴 (Blockers) and 🟠 (High) findings before declaration of completion.
 8. **Institutional Memory**: Phase 13 must capture newly discovered patterns into workflow contracts and update project documentation.
 9. **Operational Safety for Infra Tasks**: When the feature affects network, infrastructure, IaC, or OS baselines, execution must include explicit rollback, change window alignment, and post-change health validation.
@@ -65,12 +65,12 @@ Phase 4  — TECHNICAL RESEARCH  → /mattpocock/research (Technical spikes, dep
 Phase 5  — PROTOTYPE / SPIKE   → /mattpocock/prototype (Conditional: POC validation for high-risk logic)
 Phase 6  — UX DESIGN           → /ui-ux-pro-max (Conditional: if UI involved)
 Phase 7  — TO-SPEC             → /mattpocock/to-spec (Synthesize findings into docs/tasks/task.<reference>.md)
-Phase 8  — BLUEPRINT CONTRACT  → /workflow-blueprint (Scaffold reusable feature contract)
+Phase 8  — WORKFLOW CONTRACT  → /skillmap (Scaffold reusable feature contract)
 Phase 9  — EXECUTE             → Implement tasks sequentially with evidence-based edits
 Phase 10 — TESTS               → Run project specs/tests (100% pass required)
 Phase 11 — REVIEW              → /thermo-nuclear-code-quality-review or /review
 Phase 12 — FIX LOOP            → /thermo-fix × up to 3 (resolve 🔴→🟠, re-verify build)
-Phase 13 — BLUEPRINTS UPDATE   → /workflow-blueprint (Update skills & institutional memory)
+Phase 13 — SKILLS UPDATE       → /skillmap (Update skills & institutional memory)
 Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release notes)
 ```
 
@@ -79,7 +79,7 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 1. **Step 1: Primary Project Skill Classification**:
    - Load the primary project entry skill (`skills/<projectSlug>/SKILL.md`, `.agents/skills/<projectSlug>/SKILL.md`, or `AGENTS.md`) **FIRST**.
    - Classify the user request against the project's routing matrix and extract project-wide hard constraints, tech stack details, and domain boundaries.
-   - If NO primary project skill exists, trigger `/workflow-blueprint` init (or `plan-to-blueprint`) to scaffold baseline project context before proceeding.
+   - If NO primary project skill exists, trigger `/skillmap` init (or `plan-to-skillmap`) to scaffold baseline project context before proceeding.
 2. **Step 2: Codebase Orientation with `/wayfinder`**:
    - Load the `wayfinder` skill (`skills/<projectSlug>/workflows/mattpocock/wayfinder/SKILL.md` or `workflows/mattpocock/wayfinder/SKILL.md`).
    - Map codebase entry points, data flows, route handlers, models, and subsystem boundaries relevant to the classified request.
@@ -129,9 +129,9 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 2. Produce a structured task specification at `docs/tasks/task.<reference>.md` featuring executive context, UUIDv7 domain models, numbered task steps with target file paths, verification commands, and rollback playbooks.
 3. Present `docs/tasks/task.<reference>.md` to user and **gate on explicit user approval**.
 
-#### Phase 8 — BLUEPRINT CONTRACT with /workflow-blueprint
+#### Phase 8 — WORKFLOW CONTRACT with /skillmap
 
-1. Load `workflow-blueprint` (or `plan-to-blueprint`).
+1. Load `skillmap` (or `plan-to-skillmap`).
 2. Transform approved task specification into an executable workflow contract saved at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
 3. Wire the new feature workflow into the project's routing matrix.
 
@@ -169,11 +169,11 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 2. Update `docs/tasks/task.<reference>.md` and `walkthrough.md` with final verdict.
 3. Create a clean git commit on the local working branch.
 
-#### Phase 13 — BLUEPRINTS Update
+#### Phase 13 — SKILLS Update
 
 1. Review discoveries made during execution.
 2. Update existing project skills with new patterns, constraints, UUIDv7 schema details, or routing entries.
-3. Scaffold new internal workflow blueprints if repeatable operations were introduced.
+3. Scaffold new internal workflow contracts if repeatable operations were introduced.
 4. Update root doc (`AGENTS.md`) if core system rules changed.
 
 #### Phase 14 — CHANGELOG Generation
@@ -187,7 +187,7 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 
 ### Scaffolding Target Projects
 
-When `workflow-blueprint` scaffolds a project with `embed-aihero-radioactive`:
+When `skillmap` scaffolds a project with `embed-aihero-radioactive`:
 1. It creates/adapts `skills/<projectSlug>/workflows/radioactive/SKILL.md` using this 14-phase embedded contract.
 2. It copies/scaffolds Matt Pocock's skills into `skills/<projectSlug>/workflows/mattpocock/` (`wayfinder`, `grilling`, `domain-modeling`, `research`, `prototype`, `to-spec`).
 3. It registers `radioactive` and `mattpocock/*` subcommands in `skills/<projectSlug>/template.json` and `reference/routing-matrix.md`.
@@ -222,7 +222,7 @@ When `workflow-blueprint` scaffolds a project with `embed-aihero-radioactive`:
 - [ ] Phase 9 Sequential execution complete.
 - [ ] Phase 10 All test suites passing 100%.
 - [ ] Phase 12 Zero Blocker (🔴) or High (🟠) findings remaining.
-- [ ] Phase 13 Skills/blueprints updated with new knowledge.
+- [ ] Phase 13 Skills/workflows updated with new knowledge.
 - [ ] Phase 14 User-facing changelog generated.
 
 ---

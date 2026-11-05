@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.os-platform
+## skillmap.workflow.os-platform
 
 ### Goal
 

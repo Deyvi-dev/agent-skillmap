@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.remotion-video-motion
+## skillmap.workflow.remotion-video-motion
 
 ### Goal
 
@@ -238,4 +238,4 @@ export const MotionShowcase: React.FC = () => {
 
 - [Remotion Official Documentation](https://www.remotion.dev/docs)
 - [Remotion Motion Blur & Transitions](https://www.remotion.dev/docs/transitions)
-- [Workflow Blueprint SKILL](../../SKILL.md)
+- [skillmap SKILL](../../SKILL.md)

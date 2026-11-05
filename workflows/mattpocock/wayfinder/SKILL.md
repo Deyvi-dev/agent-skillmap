@@ -3,7 +3,7 @@ name: wayfinder
 description: Strategic orientation, codebase mapping, architectural entry point identification, and intent framing prior to grilling, research, or prototyping.
 ---
 
-## agentic-workflows-blueprint.workflow.mattpocock.wayfinder
+## skillmap.workflow.mattpocock.wayfinder
 
 ### Goal
 

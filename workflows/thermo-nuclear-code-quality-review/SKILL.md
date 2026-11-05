@@ -3,7 +3,7 @@ name: thermo-nuclear-code-quality-review
 description: Run an extremely strict maintainability review for abstraction quality, giant files, and spaghetti-condition growth.
 ---
 
-## agentic-workflows-blueprint.workflow.thermo-nuclear-code-quality-review
+## skillmap.workflow.thermo-nuclear-code-quality-review
 
 ### Goal
 

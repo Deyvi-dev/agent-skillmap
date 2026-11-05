@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.securing-aws-iam-permissions
+## skillmap.workflow.securing-aws-iam-permissions
 
 ### Goal
 

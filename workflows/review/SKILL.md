@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.review
+## skillmap.workflow.review
 
 ### Goal
 

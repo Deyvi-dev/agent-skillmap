@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.changelog
+## skillmap.workflow.changelog
 
 ### Goal
 

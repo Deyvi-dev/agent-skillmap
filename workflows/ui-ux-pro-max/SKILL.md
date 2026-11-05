@@ -3,7 +3,7 @@ name: ui-ux-pro-max
 description: Generate professional UI/UX design systems, palettes, typography, and responsive component guidance.
 ---
 
-## agentic-workflows-blueprint.workflow.ui-ux-pro-max
+## skillmap.workflow.ui-ux-pro-max
 
 ### Goal
 

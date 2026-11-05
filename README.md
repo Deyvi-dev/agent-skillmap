@@ -1,4 +1,4 @@
-# Agentic Workflows Blueprint
+# skillmap
 
 A meta-skill that teaches your AI agent how to build operational skills
 for each module and system in your project — so it loads only the context
@@ -13,13 +13,15 @@ and hands off to the next step. Less tokens, more precision.
 ## Quick run
 
 ```bash
-npx skills add devton/agentic-workflow-blueprint
+npx skillmap init          # copies the skill into .claude/skills/skillmap
+# or
+npx skills add Deyvi-dev/skillmap
 ```
 
 Then call the agent in your target repository with a direct prompt like:
 
 ```text
-blueprint this project.
+skillmap this project.
 ```
 
 After that, wait for the agent to finish the scaffold. The expected first
@@ -33,7 +35,7 @@ You have a project with multiple modules. Your AI agent loads everything
 every time — all rules, all context, all history. That burns tokens and
 dilutes focus.
 
-This blueprint lets the agent build **scoped skills per module**, each
+skillmap lets the agent build **scoped skills per module**, each
 with its own contract, inputs, outputs, and review gates. The agent
 only loads what's relevant to the current task.
 
@@ -41,11 +43,11 @@ only loads what's relevant to the current task.
 
 ## How it works in practice
 
-**Without this blueprint:**
+**Without skillmap:**
 You tell your agent "add a payment module". It loads your entire
 AGENTS.md (500+ lines), guesses conventions, and wings it.
 
-**With this blueprint:**
+**With skillmap:**
 
 1. You trigger this skill once: *"set up my project"* — it asks a few
    questions and scaffolds `skills/<project>/` with routing, contracts,
@@ -82,12 +84,12 @@ skills makes execution repeatable:
 - **Verification** — review gates turn plan acceptance criteria into pass/fail checks.
 - **Routing** — the entry skill loads only the workflow needed for the current step.
 
-Use the `plan-to-blueprint` workflow when you already have a plan and want the
+Use the `plan-to-skillmap` workflow when you already have a plan and want the
 agent to scaffold `skills/<projectSlug>/` with router commands and manifests.
 
 ---
 
-## Blueprint vision
+## How skillmap routes
 
 ```mermaid
 flowchart TD
@@ -106,7 +108,7 @@ flowchart TD
 
 ## Getting started
 
-When you trigger this blueprint, the agent will ask:
+When you trigger skillmap, the agent will ask:
 
 - **projectSlug** — short name for the repo (e.g. `my-backend`)
 - **baseBranch** — main integration branch (e.g. `main`, `develop`)
@@ -128,7 +130,7 @@ skills/<projectSlug>/
   reference/
     routing-matrix.md               ← Task → workflow mapping
     role-contracts.md               ← Roles, boundaries, handoffs
-    hook-blueprint.md               ← Optional automation hooks
+    hook-map.md               ← Optional automation hooks
   workflows/
     <workflowName>/SKILL.md         ← One per workflow
     <workflowName>/template.json    ← Optional per-workflow manifest
@@ -136,7 +138,7 @@ skills/<projectSlug>/
 docs/runbooks/
   agent-role-system.md              ← Operator-facing playbooks
   agent-role-hooks.md               ← Optional hook runbook
-  plan-to-blueprint.md              ← Plan → skill scaffold playbook
+  plan-to-skillmap.md              ← Plan → skill scaffold playbook
 ```
 
 ### Skill manifest (`template.json`)
@@ -157,9 +159,9 @@ for agents and tools that expose a command interface:
       "skill": "workflows/document/SKILL.md"
     },
     {
-      "name": "plan-to-blueprint",
+      "name": "plan-to-skillmap",
       "description": "Turn a technical plan into executable project skills",
-      "skill": "workflows/plan-to-blueprint/SKILL.md"
+      "skill": "workflows/plan-to-skillmap/SKILL.md"
     }
   ]
 }
@@ -178,7 +180,7 @@ After scaffold, invoke internal workflows through the project entry skill
 ```text
 /<skillName> document
 /<skillName> review
-/<skillName> plan-to-blueprint
+/<skillName> plan-to-skillmap
 /<skillName> iac
 /<skillName> network-engineering
 ```
@@ -247,12 +249,12 @@ actual workflows (deploy, test, migrate, etc).
 | `performing-vulnerability-scanning-with-nessus` | Performs authorized Nessus vulnerability assessments | Produces validated findings and remediation-priority reports |
 | `implementing-syslog-centralization-with-rsyslog` | Centralizes logs securely with rsyslog | Enforces TLS forwarding, resilient queues, and per-source routing |
 | `c4-architecture` | Generates C4 architecture documentation | Produces context/container/component/deployment Mermaid diagrams |
-| `plan-to-blueprint` | Converts a technical plan into project skills + manifests | After Plan mode or before multi-workflow implementation |
+| `plan-to-skillmap` | Converts a technical plan into project skills + manifests | After Plan mode or before multi-workflow implementation |
 
-### Plan → blueprint example
+### Plan → skillmap example
 
 ```text
-/<my-backend> plan-to-blueprint
+/<my-backend> plan-to-skillmap
 
 Technical plan: [paste milestones, tasks, acceptance criteria, constraints]
 Project: my-backend, baseBranch: main, techStack: NestJS + PostgreSQL
@@ -313,7 +315,7 @@ agent runs). Workflow SKILL files are agent-facing contract definitions.
 - **`linear-mcp.md`** — operational guide for direct Linear workflow.
 - **`mcp-linear-sync.md`** — operational guide for the planner → sync
   decomposition.
-- **`plan-to-blueprint.md`** — operational guide for plan → skill scaffold.
+- **`plan-to-skillmap.md`** — operational guide for plan → skill scaffold.
 - **`network-change.md`** — operational guide for controlled network changes.
 - **`iac-delivery.md`** — operational guide for IaC plan/apply/policy flow.
 - **`os-hardening-patching.md`** — operational guide for OS hardening and patch windows.
@@ -322,7 +324,7 @@ agent runs). Workflow SKILL files are agent-facing contract definitions.
 
 ## How to use this repo
 
-1. Read `SKILL.md` for the full blueprint procedure.
+1. Read `SKILL.md` for the full skillmap procedure.
 2. Trigger the skill in your agent with your project details.
 3. The agent scaffolds the structure and wires it into your root doc.
 4. Adjust workflows as needed — it's markdown, edit in conversation.
@@ -331,3 +333,12 @@ agent runs). Workflow SKILL files are agent-facing contract definitions.
 Stack-agnostic by design. Stack-specific rules (ORM patterns, testing
 conventions, deployment quirks) go in the project skill and get linked
 from individual workflows.
+
+---
+
+## Credits
+
+skillmap is maintained by [Deyvi](https://github.com/Deyvi-dev) and is a fork of
+[devton/agentic-workflow-blueprint](https://github.com/devton/agentic-workflow-blueprint)
+by [devton](https://github.com/devton). The `mattpocock/*` workflows adapt the methodology of
+Matt Pocock / [AI Hero](https://www.aihero.dev).

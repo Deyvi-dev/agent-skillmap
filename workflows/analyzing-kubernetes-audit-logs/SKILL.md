@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.analyzing-kubernetes-audit-logs
+## skillmap.workflow.analyzing-kubernetes-audit-logs
 
 ### Goal
 

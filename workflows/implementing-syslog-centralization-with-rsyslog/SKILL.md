@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.implementing-syslog-centralization-with-rsyslog
+## skillmap.workflow.implementing-syslog-centralization-with-rsyslog
 
 ### Goal
 

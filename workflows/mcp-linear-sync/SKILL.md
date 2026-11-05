@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.mcp-linear-sync
+## skillmap.workflow.mcp-linear-sync
 
 ### Goal
 

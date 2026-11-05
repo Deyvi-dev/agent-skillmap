@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.infra-operations
+## skillmap.workflow.infra-operations
 
 ### Goal
 

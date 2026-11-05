@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.implementing-devsecops-security-scanning
+## skillmap.workflow.implementing-devsecops-security-scanning
 
 ### Goal
 

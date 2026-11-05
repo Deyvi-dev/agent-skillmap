@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.scanning-containers-with-trivy-in-cicd
+## skillmap.workflow.scanning-containers-with-trivy-in-cicd
 
 ### Goal
 

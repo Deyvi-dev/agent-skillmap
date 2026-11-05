@@ -1,13 +1,13 @@
 ---
-name: workflow-blueprint
-description: Blueprint workflow to scaffold agent-oriented documentation with progressive disclosure and executable contracts.
+name: skillmap
+description: Map a codebase into scoped agent skills — scaffold agent-oriented documentation with progressive disclosure and executable contracts.
 ---
 
-## agentic-workflows.blueprint
+## skillmap
 
 ### Goal
 
-Provide a reusable blueprint workflow that scaffolds an "agentic workflows" documentation structure for any codebase, with progressive disclosure and executable contracts (workflows).
+Provide a reusable workflow that scaffolds an "agentic workflows" documentation structure for any codebase, with progressive disclosure and executable contracts (workflows).
 
 ### Scope
 
@@ -16,6 +16,7 @@ Provide a reusable blueprint workflow that scaffolds an "agentic workflows" docu
 
 ### Triggers
 
+- "skillmap this project"
 - "Create agentic workflow structure"
 - "Set up skills folder + workflows"
 - "Make docs agent-friendly"
@@ -27,7 +28,7 @@ Provide a reusable blueprint workflow that scaffolds an "agentic workflows" docu
 - `baseBranch`: default integration branch (e.g. `develop`, `main`)
 - `techStack`: short list (e.g. `NestJS + MikroORM + Graphile Worker`)
 - `existingRootDoc`: root instruction file path (`AGENTS.md`, `CLAUDE.md`, etc.)
-- `workflowsWanted`: list of workflow ids to scaffold (e.g. `modules`, `specs`, `document`, `network-engineering`, `infra-operations`, `iac`, `os-platform`, `plan-to-blueprint`)
+- `workflowsWanted`: list of workflow ids to scaffold (e.g. `modules`, `specs`, `document`, `network-engineering`, `infra-operations`, `iac`, `os-platform`, `plan-to-skillmap`)
 - `constraints`: project hard rules (e.g. "no emojis", "mock external boundaries only")
 - `skillName` (optional): slash-invocation name for the project entry skill; defaults to `projectSlug` (lowercase, hyphens only)
 
@@ -42,7 +43,7 @@ skills/<projectSlug>/
   reference/
     routing-matrix.md
     role-contracts.md
-    hook-blueprint.md (optional)
+    hook-map.md (optional)
   workflows/
     <workflowName>/
       SKILL.md
@@ -50,12 +51,12 @@ skills/<projectSlug>/
 docs/runbooks/
   agent-role-system.md
   agent-role-hooks.md (optional)
-  plan-to-blueprint.md (when workflow included)
+  plan-to-skillmap.md (when workflow included)
 ```
 
 And updates the root doc (`AGENTS.md` or equivalent) to link to the new entrypoints.
 
-This blueprint folder carries bundled workflows (`embed-aihero-radioactive`, `mattpocock/wayfinder`, `mattpocock/grilling`, `mattpocock/domain-modeling`, `mattpocock/research`, `mattpocock/prototype`, `mattpocock/to-spec`, `radioactive`, `brainstorming`, `plan-writing`, `ui-ux-pro-max`, `remotion-video-motion`, `thermo-nuclear-code-quality-review`, `thermo-fix`, `changelog-generator`, `document`, `review`, `changelog`, `linear`, `mcp-linear-planner`, `mcp-linear-sync`, `network-engineering`, `infra-operations`, `iac`, `os-platform`, `implementing-devsecops-security-scanning`, `scanning-containers-with-trivy-in-cicd`, `scanning-docker-images-with-trivy`, `scanning-kubernetes-manifests-with-kubesec`, `implementing-network-policies-for-kubernetes`, `implementing-rbac-hardening-for-kubernetes`, `implementing-pod-security-admission-controller`, `securing-aws-iam-permissions`, `securing-container-registry-images`, `securing-kubernetes-on-cloud`, `triaging-vulnerabilities-with-ssvc-framework`, `performing-kubernetes-cis-benchmark-with-kube-bench`, `analyzing-kubernetes-audit-logs`, `securing-github-actions-workflows`, `performing-container-image-hardening`, `remediating-s3-bucket-misconfiguration`, `performing-container-security-scanning-with-trivy`, `performing-vulnerability-scanning-with-nessus`, `implementing-syslog-centralization-with-rsyslog`, `c4-architecture`, `plan-to-blueprint`) to demonstrate full-lifecycle chained execution, Matt Pocock / AI Hero methodology embedding, plan-to-skill transformation, visual documentation generation, MCP integration patterns, and infrastructure operations coverage.
+skillmap folder carries bundled workflows (`embed-aihero-radioactive`, `mattpocock/wayfinder`, `mattpocock/grilling`, `mattpocock/domain-modeling`, `mattpocock/research`, `mattpocock/prototype`, `mattpocock/to-spec`, `radioactive`, `brainstorming`, `plan-writing`, `ui-ux-pro-max`, `remotion-video-motion`, `thermo-nuclear-code-quality-review`, `thermo-fix`, `changelog-generator`, `document`, `review`, `changelog`, `linear`, `mcp-linear-planner`, `mcp-linear-sync`, `network-engineering`, `infra-operations`, `iac`, `os-platform`, `implementing-devsecops-security-scanning`, `scanning-containers-with-trivy-in-cicd`, `scanning-docker-images-with-trivy`, `scanning-kubernetes-manifests-with-kubesec`, `implementing-network-policies-for-kubernetes`, `implementing-rbac-hardening-for-kubernetes`, `implementing-pod-security-admission-controller`, `securing-aws-iam-permissions`, `securing-container-registry-images`, `securing-kubernetes-on-cloud`, `triaging-vulnerabilities-with-ssvc-framework`, `performing-kubernetes-cis-benchmark-with-kube-bench`, `analyzing-kubernetes-audit-logs`, `securing-github-actions-workflows`, `performing-container-image-hardening`, `remediating-s3-bucket-misconfiguration`, `performing-container-security-scanning-with-trivy`, `performing-vulnerability-scanning-with-nessus`, `implementing-syslog-centralization-with-rsyslog`, `c4-architecture`, `plan-to-skillmap`) to demonstrate full-lifecycle chained execution, Matt Pocock / AI Hero methodology embedding, plan-to-skill transformation, visual documentation generation, MCP integration patterns, and infrastructure operations coverage.
 
 It can also carry runbook examples under `runbooks/` to show operator-facing execution playbooks for those workflows.
 
@@ -118,7 +119,7 @@ In `skills/<projectSlug>/reference/`, create:
 
 - `routing-matrix.md`: task category -> workflow mapping; include slash form `/<skillName> <cmd>` alongside intent triggers.
 - `role-contracts.md`: roles, boundaries, handoffs.
-- Optional `hook-blueprint.md`: opt-in automation checklist.
+- Optional `hook-map.md`: opt-in automation checklist.
 
 Keep each file self-contained and linkable.
 
@@ -187,5 +188,5 @@ Before declaring the scaffold done:
 
 ### Notes
 
-- This blueprint is intentionally stack-agnostic. For stack-specific rules (logging, ORM patterns, testing rules, network policies, IaC standards, and OS baselines), keep them in the project skill and link them from workflows.
-- Installable skill contract with frontmatter: see `SKILL.md` (`name: workflow-blueprint`).
+- skillmap is intentionally stack-agnostic. For stack-specific rules (logging, ORM patterns, testing rules, network policies, IaC standards, and OS baselines), keep them in the project skill and link them from workflows.
+- Installable skill contract with frontmatter: see `SKILL.md` (`name: skillmap`).

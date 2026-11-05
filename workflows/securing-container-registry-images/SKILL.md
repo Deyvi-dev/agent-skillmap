@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.securing-container-registry-images
+## skillmap.workflow.securing-container-registry-images
 
 ### Goal
 

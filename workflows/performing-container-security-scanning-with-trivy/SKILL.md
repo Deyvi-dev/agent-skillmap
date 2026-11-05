@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.performing-container-security-scanning-with-trivy
+## skillmap.workflow.performing-container-security-scanning-with-trivy
 
 ### Goal
 

@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.remediating-s3-bucket-misconfiguration
+## skillmap.workflow.remediating-s3-bucket-misconfiguration
 
 ### Goal
 

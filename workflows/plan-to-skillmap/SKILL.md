@@ -1,8 +1,8 @@
-## agentic-workflows-blueprint.workflow.plan-to-blueprint
+## skillmap.workflow.plan-to-skillmap
 
 ### Goal
 
-Transform a technical plan into an executable project skill blueprint: entry skill, command routing, workflow contracts, manifests, and runbook links.
+Transform a technical plan into an executable project skill map: entry skill, command routing, workflow contracts, manifests, and runbook links.
 
 ### Scope
 
@@ -11,7 +11,7 @@ Transform a technical plan into an executable project skill blueprint: entry ski
 
 ### Triggers
 
-- "Turn this plan into a skill blueprint"
+- "Turn this plan into a skill map"
 - "Convert plan to executable workflows"
 - "Scaffold skills from this technical plan"
 - After a Plan-mode session when the user wants persistent, rerunnable agent contracts
@@ -48,7 +48,7 @@ Transform a technical plan into an executable project skill blueprint: entry ski
 6. For each workflow id, create `workflows/<workflowName>/SKILL.md` with executable contract sections grounded in the plan.
 7. Optionally add `workflows/<workflowName>/template.json` when a tool needs per-workflow manifests.
 8. Wire `existingRootDoc` with "Start here" and skill/runbook links (no duplication of workflow bodies).
-9. Add or update runbook `docs/runbooks/plan-to-blueprint.md` when operator guidance is needed.
+9. Add or update runbook `docs/runbooks/plan-to-skillmap.md` when operator guidance is needed.
 10. Run consistency verification: links, ids, manifest commands, routing-matrix alignment.
 
 ### Outputs

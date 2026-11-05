@@ -3,7 +3,7 @@ name: prototype
 description: Rapid proof-of-concept (POC) prototyping and disposable spike implementation to validate UI/logic hypotheses before specification.
 ---
 
-## agentic-workflows-blueprint.workflow.mattpocock.prototype
+## skillmap.workflow.mattpocock.prototype
 
 ### Goal
 

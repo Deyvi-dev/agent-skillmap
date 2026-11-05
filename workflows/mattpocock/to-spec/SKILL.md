@@ -3,7 +3,7 @@ name: to-spec
 description: Specification synthesis protocol to transform wayfinder orientation, grilling logs, domain models, research spikes, and prototypes into actionable, executable technical plans.
 ---
 
-## agentic-workflows-blueprint.workflow.mattpocock.to-spec
+## skillmap.workflow.mattpocock.to-spec
 
 ### Goal
 
@@ -101,7 +101,7 @@ Produce a structured task specification file at `docs/tasks/task.<reference>.md`
 #### 4) Present Specification & Gate on User Approval
 
 1. Present `docs/tasks/task.<reference>.md` to the user.
-2. **Gate on explicit user approval** before proceeding to Phase 8 (Blueprint Contract) and Phase 9 (Execute).
+2. **Gate on explicit user approval** before proceeding to Phase 8 (Workflow Contract) and Phase 9 (Execute).
 
 ---
 
@@ -125,5 +125,5 @@ Produce a structured task specification file at `docs/tasks/task.<reference>.md`
 - `../../../SKILL.md`
 - `../domain-modeling/SKILL.md`
 - `../prototype/SKILL.md`
-- `../../plan-to-blueprint/SKILL.md`
+- `../../plan-to-skillmap/SKILL.md`
 - `../../embed-aihero-radioactive/SKILL.md`

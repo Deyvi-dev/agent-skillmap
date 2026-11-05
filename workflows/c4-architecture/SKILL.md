@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.c4-architecture
+## skillmap.workflow.c4-architecture
 
 ### Goal
 

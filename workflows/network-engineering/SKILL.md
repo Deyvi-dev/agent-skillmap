@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.network-engineering
+## skillmap.workflow.network-engineering
 
 ### Goal
 

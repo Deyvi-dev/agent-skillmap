@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.iac
+## skillmap.workflow.iac
 
 ### Goal
 

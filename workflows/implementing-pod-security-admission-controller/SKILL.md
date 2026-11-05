@@ -1,4 +1,4 @@
-## agentic-workflows-blueprint.workflow.implementing-pod-security-admission-controller
+## skillmap.workflow.implementing-pod-security-admission-controller
 
 ### Goal
 

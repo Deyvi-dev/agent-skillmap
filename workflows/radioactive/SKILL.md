@@ -1,10 +1,10 @@
 ---
 name: radioactive
 description: |
-  Full-cycle 11-phase development workflow blueprint. Chains request classification, discovery, UX design, planning, blueprint creation, execution, testing, quality review, iterative fix loop, blueprint updates, and changelog generation.
+  Full-cycle 11-phase development workflow. Chains request classification, discovery, UX design, planning, workflow contract creation, execution, testing, quality review, iterative fix loop, skill updates, and changelog generation.
 ---
 
-## agentic-workflows-blueprint.workflow.radioactive
+## skillmap.workflow.radioactive
 
 ### Goal
 
@@ -45,10 +45,10 @@ Provide a portable, end-to-end 11-phase development lifecycle workflow that enfo
 1. **Sequential Phase Pipeline**: All 11 phases must execute in exact numerical order. No phase skipping.
 2. **Abstract Entrypoint Fallback**:
    - **If a primary project skill exists** (e.g. `skills/<projectSlug>/SKILL.md` or `.agents/skills/<projectSlug>/SKILL.md` or `AGENTS.md`): Read it, classify request, and enforce project-specific hard rules and routing.
-   - **If NO primary project skill exists**: Trigger `/workflow-blueprint` init (or `plan-to-blueprint`) to scaffold baseline project context and routing before proceeding.
+   - **If NO primary project skill exists**: Trigger `/skillmap` init (or `plan-to-skillmap`) to scaffold baseline project context and routing before proceeding.
 3. **Socratic Discovery Gate**: Phase 2 must present discovery questions and wait for explicit user response/confirmation before Phase 3/4.
 4. **Plan Approval Gate**: Phase 4 must generate a structured task breakdown at `docs/tasks/task.<reference>.md` and obtain explicit user approval before Phase 5.
-5. **Executable Blueprint Contract**: Phase 5 must scaffold a reusable workflow contract at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
+5. **Executable Workflow Contract**: Phase 5 must scaffold a reusable workflow contract at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
 6. **Pass/Fail Quality Gate**: Phase 7 specs must pass 100%. Phase 9 fix loop must resolve all 🔴 (Blockers) and 🟠 (High) findings before declaration of completion.
 7. **Institutional Memory**: Phase 10 must capture newly discovered patterns into workflow contracts and update project documentation.
 8. **Operational Safety for Infra Tasks**: When the feature affects network, infrastructure, IaC, or OS baselines, execution must include explicit rollback, change window alignment, and post-change health validation.
@@ -58,16 +58,16 @@ Provide a portable, end-to-end 11-phase development lifecycle workflow that enfo
 ### Procedure
 
 ```
-Phase 1  — CLASSIFY & INIT  → Project skill or /workflow-blueprint init
+Phase 1  — CLASSIFY & INIT  → Project skill or /skillmap init
 Phase 2  — DISCOVER         → /brainstorming (Socratic questions & decision log)
 Phase 3  — UX DESIGN        → /ui-ux-pro-max or frontend-design (if UI involved)
 Phase 4  — PLAN             → /plan-writing (structured task breakdown in docs/tasks/task.<reference>.md)
-Phase 5  — BLUEPRINT        → /workflow-blueprint (scaffold feature contract)
+Phase 5  — CONTRACT         → /skillmap (scaffold feature contract)
 Phase 6  — EXECUTE          → Implement tasks sequentially with evidence-based edits
 Phase 7  — TESTS            → Project test runner (specs/tests for all changed code)
 Phase 8  — REVIEW           → /thermo-nuclear-code-quality-review or /review
 Phase 9  — FIX LOOP         → /thermo-fix × up to 3 (resolve 🔴→🟠→🟡, verify build, re-review)
-Phase 10 — BLUEPRINTS       → /workflow-blueprint (update skills & internal contracts)
+Phase 10 — SKILLS           → /skillmap (update skills & internal contracts)
 Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facing release note)
 ```
 
@@ -76,7 +76,7 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 1. Check for the existence of the primary project entry skill (`skills/<projectSlug>/SKILL.md`, `.agents/skills/<projectSlug>/SKILL.md`, or `AGENTS.md`).
 2. **Branch logic**:
    - **Option A (Project skill exists)**: Load the skill, classify the task using the project's routing matrix, and extract hard constraints and domain boundaries.
-   - **Option B (Project skill does NOT exist)**: Initialize `/workflow-blueprint` (run scaffolding / `plan-to-blueprint` flow) to analyze the project structure, detect `projectSlug` and `techStack`, and establish a baseline entry skill.
+   - **Option B (Project skill does NOT exist)**: Initialize `/skillmap` (run scaffolding / `plan-to-skillmap` flow) to analyze the project structure, detect `projectSlug` and `techStack`, and establish a baseline entry skill.
 3. Output a 1-paragraph context summary and the governing workflow contract.
 
 #### Phase 2 — DISCOVER with /brainstorming
@@ -99,9 +99,9 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 2. Produce a structured task specification at `docs/tasks/task.<reference>.md` containing context, tasks with file targets, explicit dependencies, and verification criteria.
 3. Present plan to user and **gate on explicit approval**.
 
-#### Phase 5 — BLUEPRINT with /workflow-blueprint
+#### Phase 5 — CONTRACT with /skillmap
 
-1. Load `workflow-blueprint` (or `plan-to-blueprint`).
+1. Load `skillmap` (or `plan-to-skillmap`).
 2. Transform the approved plan into an executable workflow contract saved at `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md`.
 3. Wire the new feature workflow into the project's routing matrix.
 
@@ -139,11 +139,11 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 2. Update `docs/tasks/task.<reference>.md` and `walkthrough.md` with final verdict.
 3. Create a clean git commit on the local working branch.
 
-#### Phase 10 — BLUEPRINTS Update
+#### Phase 10 — SKILLS Update
 
 1. Review discoveries made during execution.
 2. Update existing project skills with new patterns, constraints, or schema details.
-3. Scaffold new internal workflow blueprints if repeatable operations were introduced.
+3. Scaffold new internal workflow contracts if repeatable operations were introduced.
 4. Update root doc (`AGENTS.md`) if core system rules changed.
 
 #### Phase 11 — CHANGELOG Generation
@@ -167,7 +167,7 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 
 ### Review gate
 
-- [ ] Phase 1 project skill loaded or initialized via `/workflow-blueprint`.
+- [ ] Phase 1 project skill loaded or initialized via `/skillmap`.
 - [ ] Phase 2 discovery questions answered by user.
 - [ ] Phase 3 UX design system generated (if UI feature).
 - [ ] Phase 4 plan approved by user.
@@ -175,7 +175,7 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 - [ ] Phase 6 execution complete.
 - [ ] Phase 7 all test suites passing.
 - [ ] Phase 9 zero Blocker or High findings remaining.
-- [ ] Phase 10 skills/blueprints updated with new knowledge.
+- [ ] Phase 10 skills/workflows updated with new knowledge.
 - [ ] Phase 11 user-facing changelog generated.
 
 ---
@@ -183,6 +183,6 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 ### References
 
 - `../../SKILL.md`
-- `../plan-to-blueprint/SKILL.md`
+- `../plan-to-skillmap/SKILL.md`
 - `../review/SKILL.md`
 - `../changelog/SKILL.md`

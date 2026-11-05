@@ -3,7 +3,7 @@ name: research
 description: Technical spikes, API feasibility studies, dependency investigations, and performance risk assessments.
 ---
 
-## agentic-workflows-blueprint.workflow.mattpocock.research
+## skillmap.workflow.mattpocock.research
 
 ### Goal
 
