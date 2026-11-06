@@ -10,6 +10,8 @@ argument-hint: "<idea or problem>"
 
 Uncover user requirements, trade-offs, scope boundaries, and edge cases through a structured Socratic discovery protocol before writing code.
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: New features, ambiguous requests, or complex architecture changes.
@@ -46,7 +48,7 @@ Uncover user requirements, trade-offs, scope boundaries, and edge cases through 
 
 ### Outputs
 
-- Confirmed decision log stored in context and `walkthrough.md`.
+- Confirmed decision log stored in context and `docs/tasks/<reference>/walkthrough.md`.
 
 ### Review gate
 

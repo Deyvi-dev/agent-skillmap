@@ -41,6 +41,13 @@ repository. It reads `AGENTS.md` / `CLAUDE.md` if they exist (or infers the
 conventions from the code) and never creates a project router first, so you
 never need `/<project> radioactive`.
 
+Each run keeps its files together under `docs/tasks/`:
+
+```text
+docs/tasks/task.2026-11-05-evolution-go.md   ← spec/plan (approved before coding)
+docs/tasks/2026-11-05-evolution-go/          ← walkthrough, decision log, research…
+```
+
 `/agent-skillmap` is optional: use it only if you want per-module project skills
 at `skills/<projectSlug>/`; `/radioactive` will read them when present.
 
@@ -202,12 +209,25 @@ routing section in the entry `SKILL.md`.
 
 ## Command routing (optional project skills)
 
-Only for project skills you scaffold with `/agent-skillmap`. The installed
-commands (`/radioactive`, `/embed-aihero-radioactive`, `/brainstorming`…) are
-always called directly, never through `/<skillName>`.
+Only for project skills you scaffold with `/agent-skillmap`. The entry skill
+routes automatically: describe the task (or use `/<skillName> <task>`) and it
+picks the target from `routing-matrix.md`, either a project workflow or an
+installed command:
 
-After scaffold, invoke internal workflows through the project entry skill
-(router-only):
+| Task | Target |
+|------|--------|
+| Non-trivial feature, cross-layer refactor | `/radioactive` |
+| Feature that needs domain modeling or external API research | `/embed-aihero-radioactive` |
+| Open idea, unclear scope | `/brainstorming` |
+| Code audit | `/thermo-nuclear-code-quality-review` |
+| Project-specific workflow (`document`, `iac`…) | `skills/<projectSlug>/workflows/<cmd>/` |
+| Trivial fix | done directly, no workflow |
+
+`/radioactive` also does this check in its Phase 1, so calling it for a trivial
+task falls back to the lighter path. Installed commands are never copied into
+the project or called as `/<skillName> radioactive`.
+
+You can still name a project workflow explicitly:
 
 ```text
 /<skillName> document

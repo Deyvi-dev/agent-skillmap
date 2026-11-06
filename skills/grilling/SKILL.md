@@ -12,6 +12,8 @@ Systematically interrogate assumptions, edge cases, trade-offs, and operational 
 
 ---
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Feature requirement clarification, ambiguous requests, architectural trade-offs, and high-impact changes.
@@ -48,7 +50,7 @@ Systematically interrogate assumptions, edge cases, trade-offs, and operational 
 
 #### 1) Analyze Wayfinder & Request Context
 
-1. Review the orientation brief (`wayfinder.md`) and original request to extract ambiguous requirements, boundary decisions, and risk areas.
+1. Review the orientation brief (`docs/tasks/<reference>/wayfinder.md`) and original request to extract ambiguous requirements, boundary decisions, and risk areas.
 2. Identify implicit assumptions that must be explicitly confirmed.
 
 #### 2) Formulate Categorized Grilling Questions
@@ -73,13 +75,13 @@ Format each question with:
 #### 4) Synthesize Binding Decision Log
 
 1. Summarize user choices and confirmed trade-offs into a binding **Decision Log**.
-2. Store decision log in conversation context and append to `walkthrough.md`.
+2. Store decision log in conversation context and append to `docs/tasks/<reference>/walkthrough.md`.
 
 ---
 
 ### Outputs
 
-- Binding `decision-log.md` stored in conversation context and `walkthrough.md`.
+- Binding `docs/tasks/<reference>/decision-log.md` stored in conversation context and `docs/tasks/<reference>/walkthrough.md`.
 
 ---
 

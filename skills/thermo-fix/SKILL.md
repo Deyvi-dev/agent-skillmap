@@ -10,6 +10,8 @@ argument-hint: "[review report or findings]"
 
 Run a thermo-nuclear code quality review on the diff, apply every identified fix inline, verify the build, and iterate until all blockers are resolved (up to 3 cycles).
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Files modified in the current session or branch.
@@ -47,7 +49,7 @@ Run a thermo-nuclear code quality review on the diff, apply every identified fix
 
 - Resolved code findings.
 - Build verification pass.
-- Updated `docs/tasks/task.<reference>.md` and `walkthrough.md`.
+- Updated `docs/tasks/task.<reference>.md` and `docs/tasks/<reference>/walkthrough.md`.
 - Local git commit.
 
 ### Review gate

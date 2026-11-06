@@ -48,7 +48,13 @@ for (const name of ["radioactive", "embed-aihero-radioactive"]) {
     fail(`skills/${name}: must run standalone, never require /agent-skillmap init first`);
 }
 
-// 5. html-manual is permanently removed: no workflow, no references, no .html files shipped.
+// 5. Run artifacts live under docs/tasks/<reference>/, never at the repository root.
+for (const file of walk(skillsDir).filter((f) => f.endsWith(".md"))) {
+  const m = readFileSync(file, "utf8").match(/`(walkthrough|decision-log|wayfinder|domain-model|research-spike|prototype-report)\.md`/);
+  if (m) fail(`${relative(root, file)}: write ${m[1]}.md as docs/tasks/<reference>/${m[1]}.md`);
+}
+
+// 6. html-manual is permanently removed: no workflow, no references, no .html files shipped.
 for (const file of walk(root)) {
   const rel = relative(root, file);
   if (rel === "scripts/validate.mjs") continue;

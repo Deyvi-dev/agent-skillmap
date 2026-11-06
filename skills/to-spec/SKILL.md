@@ -8,6 +8,8 @@ argument-hint: "<feature or task>"
 
 ### Goal
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Goal
 
 Synthesize orientation briefs, grilling decision logs, domain models, technical research spikes, and prototype learnings into a rigorous, unambiguous executable technical specification saved at `docs/tasks/task.<reference>.md`.
@@ -32,11 +34,11 @@ Synthesize orientation briefs, grilling decision logs, domain models, technical 
 
 ### Inputs
 
-- `wayfinderBrief`: Orientation brief (`wayfinder.md`).
-- `decisionLog`: Grilling decision log (`decision-log.md`).
-- `domainModel`: Domain entity & state machine specification (`domain-model.md`).
-- `researchReport` (optional): Technical research spike report (`research-spike.md`).
-- `prototypeReport` (optional): Prototype retrospective (`prototype-report.md`).
+- `wayfinderBrief`: Orientation brief (`docs/tasks/<reference>/wayfinder.md`).
+- `decisionLog`: Grilling decision log (`docs/tasks/<reference>/decision-log.md`).
+- `domainModel`: Domain entity & state machine specification (`docs/tasks/<reference>/domain-model.md`).
+- `researchReport` (optional): Technical research spike report (`docs/tasks/<reference>/research-spike.md`).
+- `prototypeReport` (optional): Prototype retrospective (`docs/tasks/<reference>/prototype-report.md`).
 - `projectSlug`: Short identifier for the repository.
 
 ---
@@ -54,7 +56,7 @@ Synthesize orientation briefs, grilling decision logs, domain models, technical 
 
 #### 1) Consolidate Upstream Evidence
 
-1. Gather all upstream artifacts: `wayfinder.md`, `decision-log.md`, `domain-model.md`, `research-spike.md`, and `prototype-report.md`.
+1. Gather all upstream artifacts: `docs/tasks/<reference>/wayfinder.md`, `docs/tasks/<reference>/decision-log.md`, `docs/tasks/<reference>/domain-model.md`, `docs/tasks/<reference>/research-spike.md`, and `docs/tasks/<reference>/prototype-report.md`.
 2. Verify that all critical unknowns have been resolved and domain entities follow the project's ID convention.
 
 #### 2) Structure Technical Specification (`docs/tasks/task.<reference>.md`)

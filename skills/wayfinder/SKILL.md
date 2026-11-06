@@ -12,6 +12,8 @@ Provide a structured codebase navigation and problem space orientation protocol 
 
 ---
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Feature discovery, legacy codebase navigation, architecture exploration, and initial intent framing.
@@ -43,7 +45,7 @@ Provide a structured codebase navigation and problem space orientation protocol 
 1. **Identifier Convention**: Record the identifier format the project already uses (UUIDv4, UUIDv7, serial…) so later phases follow it.
 2. **Evidence-Based Codebase Mapping**: Read actual entry points, route handlers, models, and configs before framing problem scope; do NOT assume directory or system structure.
 3. **Problem Space Framing**: Define explicit system boundaries, affected modules, entry/exit points, and critical unknowns.
-4. **Orientation Summary**: Produce a clear orientation summary (`wayfinder.md` or conversation context) to anchor subsequent grilling, modeling, or research phases.
+4. **Orientation Summary**: Produce a clear orientation summary (`docs/tasks/<reference>/wayfinder.md` or conversation context) to anchor subsequent grilling, modeling, or research phases.
 
 ---
 
@@ -71,7 +73,7 @@ Provide a structured codebase navigation and problem space orientation protocol 
 
 #### 5) Produce Wayfinder Orientation Brief
 
-1. Output a structured summary (`wayfinder.md`) covering:
+1. Output a structured summary (`docs/tasks/<reference>/wayfinder.md`) covering:
    - **System Context**: Overview of affected subsystems.
    - **Affected Modules**: Explicit file paths and components.
    - **Key Architectural Constraints**: Security, data integrity, existing ID convention, and performance boundaries.
@@ -81,7 +83,7 @@ Provide a structured codebase navigation and problem space orientation protocol 
 
 ### Outputs
 
-- `wayfinder.md`: Orientation brief detailing codebase mapping, entrypoints, data flows, and critical unknowns.
+- `docs/tasks/<reference>/wayfinder.md`: Orientation brief detailing codebase mapping, entrypoints, data flows, and critical unknowns.
 
 ---
 

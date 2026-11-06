@@ -71,7 +71,7 @@ It also carries runbook examples under `./runbooks/` to show operator-facing exe
 - Consistency: workflow ids and file paths must match exactly across all references.
 - Minimal surface: only add the workflows actually requested.
 - Source of truth: `SKILL.md` is authoritative; `template.json` is a complementary declarative layer for agents/tools that expose command interfaces.
-- Command routing: router-only — users invoke `/<skillName> <cmd>`; the entry skill resolves `cmd` to `workflows/<cmd>/SKILL.md` and loads only that contract.
+- Automatic routing: the user does not have to name a workflow. For any task (plain message, `/<skillName> <task>` or `/<skillName> <cmd>`), the entry skill classifies it with `routing-matrix.md` and runs exactly one target: a project workflow (`workflows/<cmd>/SKILL.md`) or an installed command such as `radioactive`, invoked by name and never copied.
 - Manifest sync: every command in `template.json` must map to an existing workflow folder and match `routing-matrix.md`.
 
 ### Procedure
@@ -85,10 +85,11 @@ Create `skills/<projectSlug>/SKILL.md` as the global entrypoint:
   - how to classify a task
   - how to select one workflow
   - how to close (validation gate if applicable)
-- A **Command routing** section (router-only):
-  - invocation pattern: `/<skillName> <cmd>` (e.g. `/my-backend document`)
-  - map each `cmd` in `workflowsWanted` to `workflows/<cmd>/SKILL.md`
-  - if the agent does not parse subcommands, read `cmd` from the user message and load the mapped workflow contract
+- A **Command routing** section (automatic):
+  - classify every task with `reference/routing-matrix.md` and pick exactly one target; the user never has to type a subcommand
+  - explicit form still works: `/<skillName> <cmd>` (e.g. `/my-backend document`) maps `cmd` to `workflows/<cmd>/SKILL.md`
+  - installed commands are route targets too: non-trivial features and cross-layer refactors → `radioactive` (or `embed-aihero-radioactive` when the task needs domain modeling or research); ideas → `brainstorming`; code audit → `thermo-nuclear-code-quality-review`. Invoke them as the installed skill (`/radioactive <task>`), never as `workflows/radioactive/`
+  - trivial changes (one file, obvious fix) run directly without any workflow
   - do not create flat alias skills unless explicitly requested
 - A list of internal workflow helpers:
   - `workflows/<name>/SKILL.md` links
@@ -119,7 +120,7 @@ Create `skills/<projectSlug>/template.json` as the declarative manifest:
 
 In `skills/<projectSlug>/reference/`, create:
 
-- `routing-matrix.md`: task category -> workflow mapping; include slash form `/<skillName> <cmd>` alongside intent triggers.
+- `routing-matrix.md`: task category -> target mapping, with intent triggers. Targets are project workflows (`/<skillName> <cmd>`) or installed commands (`/radioactive`, `/embed-aihero-radioactive`, `/brainstorming`, …). Include a "trivial → do it directly" row.
 - `role-contracts.md`: roles, boundaries, handoffs.
 - Optional `hook-map.md`: opt-in automation checklist.
 
@@ -186,7 +187,7 @@ Before declaring the scaffold done:
 - No duplication between root, project skill, and workflows.
 - All links resolve (`.md`).
 - `template.json` is valid JSON and consistent with `workflowsWanted`.
-- Command routing resolves every listed subcommand to exactly one workflow contract.
+- Command routing resolves every listed subcommand and every task category to exactly one target (project workflow, installed command, or "do it directly").
 
 ### Notes
 

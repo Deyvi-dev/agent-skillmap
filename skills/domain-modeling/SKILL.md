@@ -12,6 +12,8 @@ Formulate precise domain models, entity schemas, aggregate boundaries, state tra
 
 ---
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Core data layer changes, state machine definitions, domain logic refactoring, schema migrations, and API payload modeling.
@@ -50,7 +52,7 @@ Formulate precise domain models, entity schemas, aggregate boundaries, state tra
 
 #### 1) Parse Decision Log & Wayfinder Evidence
 
-1. Extract entities, attributes, domain events, and state mutations from `decision-log.md` and `wayfinder.md`.
+1. Extract entities, attributes, domain events, and state mutations from `docs/tasks/<reference>/decision-log.md` and `docs/tasks/<reference>/wayfinder.md`.
 2. Identify core domain boundaries and bounded contexts.
 
 #### 2) Define Aggregates & Entities
@@ -71,13 +73,13 @@ Formulate precise domain models, entity schemas, aggregate boundaries, state tra
 
 #### 5) Compile Domain Model Specification
 
-1. Document entities, value objects, invariants, schemas, state transition tables, and Mermaid diagrams into `domain-model.md`.
+1. Document entities, value objects, invariants, schemas, state transition tables, and Mermaid diagrams into `docs/tasks/<reference>/domain-model.md`.
 
 ---
 
 ### Outputs
 
-- `domain-model.md`: Domain model specification containing Mermaid ER & state diagrams, entity schemas, primary key definitions, and business invariant contracts.
+- `docs/tasks/<reference>/domain-model.md`: Domain model specification containing Mermaid ER & state diagrams, entity schemas, primary key definitions, and business invariant contracts.
 
 ---
 

@@ -10,6 +10,8 @@ argument-hint: "[files, diff or PR]"
 
 Perform an unusually strict review focused on implementation quality, maintainability, abstraction quality, and codebase health.
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Any code change or pull request diff across the codebase.
@@ -52,7 +54,7 @@ Perform an unusually strict review focused on implementation quality, maintainab
 
 ### Outputs
 
-- Severity-ranked finding table appended to `walkthrough.md` or conversation output.
+- Severity-ranked finding table appended to `docs/tasks/<reference>/walkthrough.md` or conversation output.
 - Final verdict: **APPROVED** or **FINDINGS REMAIN**.
 
 ### Review gate

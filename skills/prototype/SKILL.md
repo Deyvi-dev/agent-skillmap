@@ -12,6 +12,8 @@ Build rapid, lightweight proof-of-concept (POC) prototypes to validate complex u
 
 ---
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: High-risk UI interactions, complex algorithmic logic, innovative features, dynamic workflows, or untried system flows.
@@ -71,7 +73,7 @@ Build rapid, lightweight proof-of-concept (POC) prototypes to validate complex u
 
 #### 5) Compile Prototype Learnings
 
-1. Document findings in `prototype-report.md`, summarizing:
+1. Document findings in `docs/tasks/<reference>/prototype-report.md`, summarizing:
    - Hypotheses confirmed vs. refuted.
    - Refined requirements and edge cases discovered.
    - Design patterns or code structures to carry forward into `/to-spec`.
@@ -80,7 +82,7 @@ Build rapid, lightweight proof-of-concept (POC) prototypes to validate complex u
 
 ### Outputs
 
-- `prototype-report.md`: Prototype retrospective report detailing validated hypotheses, UI/UX feedback, and refined specification requirements.
+- `docs/tasks/<reference>/prototype-report.md`: Prototype retrospective report detailing validated hypotheses, UI/UX feedback, and refined specification requirements.
 - Lightweight disposable code spike.
 
 ---
@@ -89,7 +91,7 @@ Build rapid, lightweight proof-of-concept (POC) prototypes to validate complex u
 
 - [ ] Core hypothesis tested with empirical runtime or visual proof.
 - [ ] Prototype kept isolated from production main branch.
-- [ ] Retrospective learnings recorded in `prototype-report.md` to feed `/to-spec`.
+- [ ] Retrospective learnings recorded in `docs/tasks/<reference>/prototype-report.md` to feed `/to-spec`.
 
 ---
 

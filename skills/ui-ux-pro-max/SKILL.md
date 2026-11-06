@@ -10,6 +10,8 @@ argument-hint: "<screen or component>"
 
 Produce a visual design system, color palette, typography hierarchy, and responsive interaction pattern for UI components.
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Web/Mobile interfaces, views, components, and pages.
@@ -38,11 +40,11 @@ Produce a visual design system, color palette, typography hierarchy, and respons
 2. Define HSL color palette (Primary, Secondary, Accent, Background, Surface, Muted).
 3. Establish font pairings and typographic scale.
 4. Specify micro-animations, hover states, and dynamic visual cues.
-5. Output design block to `walkthrough.md`.
+5. Output design block to `docs/tasks/<reference>/walkthrough.md`.
 
 ### Outputs
 
-- UX Design Specification Block in `walkthrough.md`.
+- UX Design Specification Block in `docs/tasks/<reference>/walkthrough.md`.
 
 ### Review gate
 

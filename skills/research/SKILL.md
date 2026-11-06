@@ -12,6 +12,8 @@ Conduct evidence-driven technical research, dependency analysis, and isolated co
 
 ---
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Integration spikes, third-party API research, library evaluations, performance bottlenecks, and unresolved technical risks.
@@ -42,7 +44,7 @@ Conduct evidence-driven technical research, dependency analysis, and isolated co
 1. **Empirical Evidence First**: Base findings strictly on concrete code inspection, test runs, or benchmark outputs; no guessing.
 2. **Isolated Spike Execution**: Run temporary research scripts or spikes in `scratch/` directory without polluting production code.
 3. **Security & Dependency Audit**: Evaluate license, vulnerabilities, and maintenance status for any proposed third-party package.
-4. **Research Report Output**: Document findings, benchmarks, trade-offs, and clear implementation recommendations in `research-spike.md`.
+4. **Research Report Output**: Document findings, benchmarks, trade-offs, and clear implementation recommendations in `docs/tasks/<reference>/research-spike.md`.
 
 ---
 
@@ -50,7 +52,7 @@ Conduct evidence-driven technical research, dependency analysis, and isolated co
 
 #### 1) Extract Technical Questions & Risks
 
-1. Parse `wayfinder.md`, `decision-log.md`, and `domain-model.md` to identify unresolved technical questions, API contracts, or performance targets.
+1. Parse `docs/tasks/<reference>/wayfinder.md`, `docs/tasks/<reference>/decision-log.md`, and `docs/tasks/<reference>/domain-model.md` to identify unresolved technical questions, API contracts, or performance targets.
 2. Formulate explicit hypotheses to test during research.
 
 #### 2) Perform Code & Dependency Investigation
@@ -71,13 +73,13 @@ Conduct evidence-driven technical research, dependency analysis, and isolated co
 
 #### 5) Publish Research Spike Report
 
-1. Record findings, benchmark logs, and recommendations in `research-spike.md` or conversation context.
+1. Record findings, benchmark logs, and recommendations in `docs/tasks/<reference>/research-spike.md` or conversation context.
 
 ---
 
 ### Outputs
 
-- `research-spike.md`: Technical research spike report detailing findings, benchmarks, API contracts, and implementation recommendations.
+- `docs/tasks/<reference>/research-spike.md`: Technical research spike report detailing findings, benchmarks, API contracts, and implementation recommendations.
 - Temporary research scripts in `scratch/`.
 
 ---
@@ -87,7 +89,7 @@ Conduct evidence-driven technical research, dependency analysis, and isolated co
 - [ ] Technical research conducted using empirical code/log evidence.
 - [ ] Code spikes executed in `scratch/` without uncommitted production churn.
 - [ ] Security and dependency risks evaluated.
-- [ ] Actionable implementation recommendation published in `research-spike.md`.
+- [ ] Actionable implementation recommendation published in `docs/tasks/<reference>/research-spike.md`.
 
 ---
 

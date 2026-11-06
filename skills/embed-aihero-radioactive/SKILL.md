@@ -52,6 +52,13 @@ Run a 14-phase development lifecycle that embeds Matt Pocock's skills (`wayfinde
 8. **Institutional Memory**: Phase 13 must capture newly discovered patterns into workflow contracts and update project documentation.
 9. **Operational Safety for Infra Tasks**: When the feature affects network, infrastructure, IaC, or OS baselines, execution must include explicit rollback, change window alignment, and post-change health validation.
 
+### Task files
+
+- `<reference>` = `YYYY-MM-DD-<task-slug>` (today's date + 2–4 word kebab-case slug, e.g. `2026-11-05-evolution-go`). Pick it once in Phase 1, state it to the user, and reuse it for the whole run. If `docs/tasks/` already has a reference for the same task, continue that one instead of creating a new one.
+- Spec / plan: `docs/tasks/task.<reference>.md`.
+- Every other artifact of the run (walkthrough, decision-log, wayfinder, domain-model, research-spike, prototype-report): `docs/tasks/<reference>/`. Never write them at the repository root.
+- Disposable spike code goes in `scratch/` (add it to `.gitignore` if missing).
+
 ---
 
 ### Procedure
@@ -78,52 +85,54 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 1. **Step 1: Read existing project rules**:
    - Read `AGENTS.md` / `CLAUDE.md`, `README.md`, and `skills/<projectSlug>/SKILL.md` (with its routing matrix) only if present.
    - Extract hard constraints, tech stack and conventions (ID format, ORM, test runner). If nothing is written down, infer them from the code. Do not create files for this.
+   - **Route check**: if the routing matrix (or the task itself) points to a lighter target — a trivial fix, docs-only change or a dedicated project workflow — say so in one line and switch to it instead of running the 14 phases.
 2. **Step 2: Codebase Orientation with `/wayfinder`**:
    - Load the installed `wayfinder` skill (`../wayfinder/SKILL.md`).
    - Map codebase entry points, data flows, route handlers, models, and subsystem boundaries relevant to the classified request.
    - Search repository for relevant controllers, schemas, database models, background jobs, and existing test coverage.
    - Identify existing architectural patterns, legacy constraints, and critical unknowns to feed Phase 2 grilling.
-3. Output a 1-paragraph context summary combining the primary project skill rules and the `wayfinder.md` orientation brief.
+3. Choose the `<reference>` (see Task files) and create `docs/tasks/<reference>/`.
+4. Output a 1-paragraph context summary (including the `<reference>`) combining the primary project skill rules and the `docs/tasks/<reference>/wayfinder.md` orientation brief.
 
 #### Phase 2 — GRILLING with /grilling
 
-1. Load `grilling` skill and parse the `wayfinder.md` brief and project rules.
+1. Load `grilling` skill and parse the `docs/tasks/<reference>/wayfinder.md` brief and project rules.
 2. Formulate 3 to 7 strategic questions covering Scope, Edge Cases, Data Contracts (identifier format), and Performance/Security rules.
 3. Present questions with trade-offs (Pros, Cons, Recommended Default).
-4. **Wait for explicit user response.** Do NOT proceed until user answers are recorded into a binding **Decision Log** (`decision-log.md`).
+4. **Wait for explicit user response.** Do NOT proceed until user answers are recorded into a binding **Decision Log** (`docs/tasks/<reference>/decision-log.md`).
 
 #### Phase 3 — DOMAIN MODELING with /domain-modeling
 
-1. Load `domain-modeling` skill and review `decision-log.md`.
+1. Load `domain-modeling` skill and review `docs/tasks/<reference>/decision-log.md`.
 2. Define Aggregate Roots, Entities, Value Objects, and field types.
 3. Use the project's existing primary-key convention for new models (UUIDv7 only if there is none).
 4. Model state transitions (using Mermaid `stateDiagram-v2`) and entity relationships (using Mermaid `erDiagram`).
-5. Output `domain-model.md`.
+5. Output `docs/tasks/<reference>/domain-model.md`.
 
 #### Phase 4 — TECHNICAL RESEARCH with /research
 
 1. Load `research` skill to address technical unknowns or API contract dependencies.
 2. Execute temporary spikes in `scratch/` directory to measure performance or test library behavior.
 3. Evaluate third-party dependencies, security surface, and API constraints.
-4. Output `research-spike.md`.
+4. Output `docs/tasks/<reference>/research-spike.md`.
 
 #### Phase 5 — PROTOTYPE / SPIKE with /prototype (Conditional)
 
 1. **Check condition**: Run if `needsPrototype` is true or if high-risk UI/algorithmic logic was identified.
 2. Load `prototype` skill to build a lightweight proof-of-concept (POC) spike.
 3. Perform interactive smoke tests or screenshot verification to test core hypotheses.
-4. Record retrospective learnings in `prototype-report.md`.
+4. Record retrospective learnings in `docs/tasks/<reference>/prototype-report.md`.
 
 #### Phase 6 — UX DESIGN with /ui-ux-pro-max (Conditional)
 
 1. **Check condition**: Run if `uiInvolved` is true (or feature touches views, templates, or visual components).
 2. Load `ui-ux-pro-max` skill.
 3. Generate design tokens (color palette, CSS variables, typography) and responsive layout rules (using mobile-first `min-*` breakpoints).
-4. Append UX design rules to `walkthrough.md`.
+4. Append UX design rules to `docs/tasks/<reference>/walkthrough.md`.
 
 #### Phase 7 — TO-SPEC with /to-spec
 
-1. Load `to-spec` skill and consolidate all upstream evidence (`wayfinder.md`, `decision-log.md`, `domain-model.md`, `research-spike.md`, `prototype-report.md`).
+1. Load `to-spec` skill and consolidate all upstream evidence (`docs/tasks/<reference>/wayfinder.md`, `docs/tasks/<reference>/decision-log.md`, `docs/tasks/<reference>/domain-model.md`, `docs/tasks/<reference>/research-spike.md`, `docs/tasks/<reference>/prototype-report.md`).
 2. Produce a structured task specification at `docs/tasks/task.<reference>.md` featuring executive context, domain models, numbered task steps with target file paths, verification commands, and rollback playbooks.
 3. Present `docs/tasks/task.<reference>.md` to user and **gate on explicit user approval**.
 
@@ -154,7 +163,7 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
    - 🟠 **High**: Fix in current cycle.
    - 🟡 **Medium**: Fix if trivial or record.
    - 🟢 **Low**: Informational.
-3. Append findings table to `walkthrough.md` artifact.
+3. Append findings table to `docs/tasks/<reference>/walkthrough.md` artifact.
 
 #### Phase 12 — FIX LOOP (up to `maxFixAttempts` ×)
 
@@ -163,7 +172,7 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
    - Run build verification command (`bun run build`, `npm run test`, etc.).
    - Re-review modified files.
    - Stop loop early if zero 🔴 / 🟠 findings remain (verdict: APPROVED).
-2. Update `docs/tasks/task.<reference>.md` and `walkthrough.md` with final verdict.
+2. Update `docs/tasks/task.<reference>.md` and `docs/tasks/<reference>/walkthrough.md` with final verdict.
 3. Create a clean git commit on the local working branch.
 
 #### Phase 13 — LEARNINGS
@@ -177,18 +186,18 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 1. Load `changelog-generator` (or `changelog` skill).
 2. Analyze session git commits against base branch.
 3. Generate customer-facing release notes categorized by Features, Fixes, and Improvements.
-4. Append changelog entry to `walkthrough.md`.
+4. Append changelog entry to `docs/tasks/<reference>/walkthrough.md`.
 
 ---
 
 ### Outputs
 
-- `wayfinder.md`: Orientation brief.
-- `decision-log.md`: Grilling decision log.
-- `domain-model.md`: Domain entity & state machine specification .
-- `research-spike.md` / `prototype-report.md` (when triggered).
+- `docs/tasks/<reference>/wayfinder.md`: Orientation brief.
+- `docs/tasks/<reference>/decision-log.md`: Grilling decision log.
+- `docs/tasks/<reference>/domain-model.md`: Domain entity & state machine specification .
+- `docs/tasks/<reference>/research-spike.md` / `docs/tasks/<reference>/prototype-report.md` (when triggered).
 - `docs/tasks/task.<reference>.md`: Approved execution plan.
-- `walkthrough.md`: Decision log, UX specs, review tables, fix history, and user changelog.
+- `docs/tasks/<reference>/walkthrough.md`: Decision log, UX specs, review tables, fix history, and user changelog.
 - Clean git commit on local branch.
 
 ---
@@ -196,8 +205,8 @@ Phase 14 — CHANGELOG           → /changelog-generator or /changelog (Release
 ### Review gate
 
 - [ ] Existing project rules read FIRST in Phase 1 before running `/wayfinder` (no scaffolding created).
-- [ ] Phase 1 Wayfinder orientation brief (`wayfinder.md`) created.
-- [ ] Phase 2 Socratic grilling questions answered by user and recorded in `decision-log.md`.
+- [ ] Phase 1 Wayfinder orientation brief (`docs/tasks/<reference>/wayfinder.md`) created.
+- [ ] Phase 2 Socratic grilling questions answered by user and recorded in `docs/tasks/<reference>/decision-log.md`.
 - [ ] Phase 3 Domain model defined with the project's key convention and Mermaid state/ER diagrams.
 - [ ] Phase 4 Technical research spike completed (if technical risks existed).
 - [ ] Phase 5 Prototype POC validated (if prototype requested).

@@ -10,6 +10,8 @@ argument-hint: "<feature to plan>"
 
 Transform a decision log and feature requirements into a structured, dependency-mapped task breakdown saved at `docs/tasks/task.<reference>.md`.
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Feature design, refactoring tasks, or multi-step execution.

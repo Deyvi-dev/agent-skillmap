@@ -10,6 +10,8 @@ argument-hint: "[git range or version]"
 
 Analyze session git commits and generate user-facing release notes categorized by features, fixes, and improvements.
 
+> Task files: `<reference>` = `YYYY-MM-DD-<task-slug>`; spec at `docs/tasks/task.<reference>.md`, other artifacts in `docs/tasks/<reference>/` (full rule: `../radioactive/SKILL.md`, section "Task files").
+
 ### Scope
 
 - **Applies to**: Post-implementation delivery and PR completion.
@@ -36,11 +38,11 @@ Analyze session git commits and generate user-facing release notes categorized b
 1. Run `git log` against `baseBranch` to inspect session commits.
 2. Filter and categorize user-visible changes.
 3. Transform technical language into clear benefit-driven descriptions.
-4. Output changelog section into `walkthrough.md`.
+4. Output changelog section into `docs/tasks/<reference>/walkthrough.md`.
 
 ### Outputs
 
-- User-facing Changelog entry in `walkthrough.md`.
+- User-facing Changelog entry in `docs/tasks/<reference>/walkthrough.md`.
 
 ### Review gate
 

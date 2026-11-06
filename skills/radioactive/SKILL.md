@@ -55,6 +55,13 @@ Provide a portable, end-to-end 11-phase development lifecycle workflow that enfo
 8. **Operational Safety for Infra Tasks**: When the feature affects network, infrastructure, IaC, or OS baselines, execution must include explicit rollback, change window alignment, and post-change health validation.
 9. **Markdown only — never generate HTML manuals**: documentation, manuals and diagrams are written as Markdown (Mermaid for diagrams). Do not create `.html` manuals, HTML documentation sites or any HTML manual workflow, even when asked to "make a manual".
 
+### Task files
+
+- `<reference>` = `YYYY-MM-DD-<task-slug>` (today's date + 2–4 word kebab-case slug, e.g. `2026-11-05-evolution-go`). Pick it once in Phase 1, state it to the user, and reuse it for the whole run. If `docs/tasks/` already has a reference for the same task, continue that one instead of creating a new one.
+- Spec / plan: `docs/tasks/task.<reference>.md`.
+- Every other artifact of the run (walkthrough, decision-log, wayfinder, domain-model, research-spike, prototype-report): `docs/tasks/<reference>/`. Never write them at the repository root.
+- Disposable spike code goes in `scratch/` (add it to `.gitignore` if missing).
+
 ---
 
 ### Procedure
@@ -77,7 +84,9 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 
 1. Read the project context that already exists: `AGENTS.md` / `CLAUDE.md`, `README.md`, and `skills/<projectSlug>/SKILL.md` (with its routing matrix) only if it is present.
 2. If there is no written project context, infer `techStack`, conventions (ID format, ORM, test runner, folder layout) and hard rules from the code. Do not create files for this.
-3. Output a 1-paragraph context summary: stack, rules that apply, and the modules the task touches.
+3. **Route check**: if the project skill's routing matrix (or the task itself) points to a lighter target — a trivial fix, a docs-only change, or a dedicated project workflow — say so in one line and switch to that target instead of running the 11 phases. If the task needs deep domain modeling or external API research, suggest `/embed-aihero-radioactive`.
+4. Choose the `<reference>` (see Task files) and create `docs/tasks/<reference>/`.
+5. Output a 1-paragraph context summary: stack, rules that apply, the modules the task touches, and the `<reference>`.
 
 #### Phase 2 — DISCOVER with /brainstorming
 
@@ -126,7 +135,7 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
    - 🟠 **High**: Fix in current cycle.
    - 🟡 **Medium**: Fix if trivial or record.
    - 🟢 **Low**: Informational.
-3. Append findings table to `walkthrough.md` artifact.
+3. Append findings table to `docs/tasks/<reference>/walkthrough.md` artifact.
 
 #### Phase 9 — FIX LOOP (up to `maxFixAttempts` ×)
 
@@ -135,7 +144,7 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
    - Run build verification command (`bun run build`, `rails runner`, `npm run test`, etc.).
    - Re-review modified files.
    - Stop loop early if zero 🔴 / 🟠 findings remain (verdict: APPROVED).
-2. Update `docs/tasks/task.<reference>.md` and `walkthrough.md` with final verdict.
+2. Update `docs/tasks/task.<reference>.md` and `docs/tasks/<reference>/walkthrough.md` with final verdict.
 3. Create a clean git commit on the local working branch.
 
 #### Phase 10 — LEARNINGS
@@ -149,14 +158,14 @@ Phase 11 — CHANGELOG        → /changelog-generator or /changelog (user-facin
 1. Load `changelog-generator` (or `changelog` skill).
 2. Analyze session git commits against base branch.
 3. Generate customer-facing release notes categorized by Features, Fixes, and Improvements.
-4. Append changelog entry to `walkthrough.md`.
+4. Append changelog entry to `docs/tasks/<reference>/walkthrough.md`.
 
 ---
 
 ### Outputs
 
 - `docs/tasks/task.<reference>.md`: Executed task breakdown with completion status.
-- `walkthrough.md`: Decision log, UX specs, review tables, fix history, and user changelog.
+- `docs/tasks/<reference>/walkthrough.md`: Decision log, UX specs, review tables, fix history, and user changelog.
 - Optional: `skills/<projectSlug>/workflows/<feature-slug>/SKILL.md` (only if the project already uses project skills).
 - New durable rules added to `AGENTS.md` (when any were discovered).
 - Clean git commit on local branch.
