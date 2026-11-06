@@ -1,6 +1,6 @@
 {
   "name": "@deyvi-dev/agent-skillmap",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Map your codebase into scoped AI agent skills: a router plus per-module workflows with review gates, so the agent loads only the context it needs.",
   "keywords": [
     "ai",
